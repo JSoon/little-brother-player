@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const distDate = require('./date'); // 发布日期
+const publicDate = require('./date'); // 发布日期
 const banner = require('./banner');
 const constants = require('./constants');
 
@@ -18,11 +18,11 @@ module.exports = {
   mode: ENV,
   entry: {
     [OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME),
-    [distDate + '/' + OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME)
+    [publicDate + '/' + OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME)
   },
   output: {
     filename: '[name].js',
-    path: constants.distPath,
+    path: constants.publicPath,
     publicPath: '/'
   },
   devtool: 'inline-source-map',
@@ -67,7 +67,7 @@ module.exports = {
             options: {
               // you can specify a publicPath here
               // by default it uses publicPath in webpackOptions.output
-              publicPath: constants.distPath,
+              publicPath: constants.publicPath,
               hmr: ENV === 'development',
             },
           },
@@ -113,7 +113,7 @@ module.exports = {
                     encodeType: 'base64',
                     maxSize: 10,
                     fallback: 'copy',
-                    assetsPath: path.resolve(constants.distPath, distDate, 'img'),
+                    assetsPath: path.resolve(constants.publicPath, publicDate, 'img'),
                     useHash: true
                   },
                   // 重写样式表中的图片url路径（自定义）
