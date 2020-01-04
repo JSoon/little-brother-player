@@ -35,7 +35,7 @@ module.exports = {
     port: 9000,
     watchOptions: {
       ignored: /(node_modules|bower_components)/,
-      aggregateTimeout: 600
+      aggregateTimeout: 1000
     }
   },
   module: {
@@ -153,7 +153,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '~': path.resolve(constants.srcPath)
+      '@': constants.rootPath,
+      '~': constants.srcPath
     }
   },
   externals: {
@@ -167,6 +168,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       // https://webpack.js.org/plugins/provide-plugin/
       // Automatically load modules instead of having to import or require them everywhere.
+      debug: '~/utils/debug'
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

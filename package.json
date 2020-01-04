@@ -17,7 +17,7 @@
     "name": "J.Soon",
     "email": "serdeemail@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
