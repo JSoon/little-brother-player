@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,23 @@
     }
   </style>
 </head>
+
 <body>
   <div id="J_LittleBrotherPlayer"></div>
-  
+
   <script src="/little.brother.player.js"></script>
+  <script>
+    const media = [{
+      src: '/src/test/movie.ogv',
+      type: 'ogg'
+    }]
+
+    const player = littleBrother({
+      id: 'J_LittleBrotherPlayer',
+      media: media,
+      autoplay: true
+    })
+  </script>
 </body>
+
 </html>

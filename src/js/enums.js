@@ -1,6 +1,8 @@
 /**
- * @description 枚举
+ * @description Enums
  */
+
+//#region className
 
 const prefix = 'little-brother-player'
 const className = {
@@ -9,6 +11,21 @@ const className = {
   ui: `${prefix}-ui`
 }
 
+//#endregion
+
+//#region MIME type
+
+const MIME = {
+  mp3: 'audio/mpeg',
+  mp4: 'video/mp4',
+  ogg: 'video/ogg',
+  m3u8: 'application/x-mpegURL', // or vnd.apple.mpegURL
+  ts: 'video/MP2T'
+}
+
+//#endregion
+
 export {
-  className
+  className,
+  MIME
 }
