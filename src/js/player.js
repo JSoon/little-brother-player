@@ -7,14 +7,23 @@ import events from '~/js/events'
  * @description Initializing player
  * 
  * @param {object}          settings
+ * @param {boolean}         settings.debug      debug mode    
  * @param {string}          settings.id         player element id
  * @param {string}          settings.type       media type, i.e. mp4, ogg, m3u8
  * @param {array|string}    settings.media      media source
  * @param {boolean}         settings.autoplay    
+ * @param {string}          settings.i18n       i18n code  
  */
-const littleBrother = (settings = {
-  autoplay: false
-}) => {
+const littleBrother = (settings) => {
+
+  const defaults = {
+    debug: false,
+    autoplay: false,
+    i18n: 'en'
+  }
+
+  // Merge defaults
+  settings = Object.assign(defaults, settings)
 
   if (!settings.id || TYPEOF.default(settings.id) !== 'string') {
     throw 'No player id or type is not string!'
@@ -62,6 +71,7 @@ const littleBrother = (settings = {
 if (!window.littleBrother) {
   window.littleBrother = littleBrother
 } else {
+  debug.log(` 小老弟你怎么回事？大老哥H5播放器冲鸭 ─=≡Σ(((つ•̀ω•́)つ') `)
   window.bigBrother = littleBrother
 }
 

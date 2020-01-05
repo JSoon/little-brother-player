@@ -1,3 +1,4 @@
+import debugPanel from '~/js/ui/debug'
 import controllerBar from '~/js/controllers/controllers'
 
 /**
@@ -13,6 +14,9 @@ export default (params) => {
 
   const UIEle = document.createElement('div')
   UIEle.classList.add(ENUMS.className.ui)
+  if (settings.debug) {
+    UIEle.appendChild(debugPanel(params))
+  }
   UIEle.appendChild(controllerBar(params))
   dom.ui = UIEle
 

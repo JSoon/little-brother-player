@@ -29,6 +29,17 @@
   .little-brother-player-ui {
     z-index: map-get($map: $layer, $key: player-ui);
 
+    .little-brother-player-ui-debug-panel {
+      width: 100%;
+      height: 100%;
+      color: white;
+      background-color: rgba($color: #000000, $alpha: .5);
+
+      p {
+        margin: 0;
+        word-break: break-all;
+      }
+    }
   }
 
   .little-brother-player-ctrl-bar {

@@ -9,6 +9,7 @@ const className = {
   player: prefix,
   playerWrapper: `${prefix}-wrapper`,
   ui: `${prefix}-ui`,
+  debugPanel: `${prefix}-ui-debug-panel`,
   ctrlBar: `${prefix}-ctrl-bar`,
   play: `${prefix}-ctrl-play-btn`
 }
@@ -27,7 +28,20 @@ const MIME = {
 
 //#endregion
 
+//#region i18n
+
+let i18n = {}
+
+i18n.en = {
+  play: 'play',
+  pause: 'pause',
+  stop: 'stop'
+}
+
+//#endregion
+
 export {
   className,
-  MIME
+  MIME,
+  i18n
 }

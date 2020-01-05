@@ -22,20 +22,26 @@
   <script src="/little.brother.player.js"></script>
   <script>
     const media = [{
-      src: '/src/test/movie.ogv',
-      type: 'ogg'
-    }]
+        src: '//vod.migu.cn/9I6Wsb2ZKr07KkG+rnTofZEpjOheGWAg6MPV8shZM98YBIEDf1zvOT9V678Oi4SeJ74tozLA+OXRmZTklfd9DonBZks/gdbtmzLfILBznpV4mtduioWTUt6sJrQIh6QSVTUP/gL+1XXUsrxD5m+QSfJbhR/9sah6yWc7c3+yyDTlbhCloFmx69SnE7fhGgQb/Photograph-Ed%20Sheeran.mp4?msisdn=2a257d4c-1ee0-4ad8-8081-b1650c26390a&spid=600906&sid=57802448695100&timestamp=20200105200734&encrypt=fc9acfdd3b04779885959f38ee3d1f84&k=76cda881b62e5d3b&t=1578233254795&ec=1&FN=Photograph',
+        type: 'mp4'
+      },
+      {
+        src: '/src/test/movie.ogv',
+        type: 'ogg'
+      }
+    ]
 
     const player = littleBrother({
       id: 'J_LittleBrotherPlayer',
       media: media,
-      autoplay: true
+      debug: true,
+      // autoplay: true
     })
 
-    player.on('pause', () => {
-      console.log('呵呵');
+    // player.on('pause', () => {
+    //   console.log('呵呵');
 
-    })
+    // })
   </script>
 </body>
 

@@ -12,14 +12,14 @@ export default (params) => {
 
   const playBtn = document.createElement('div')
   playBtn.classList.add(ENUMS.className.play)
-  playBtn.innerHTML = '播放'
+  playBtn.innerHTML = ENUMS.i18n[settings.i18n].play
   dom.play = playBtn
 
   playBtn.onclick = (e) => {
     if (!api.isPlaying()) {
       api.play()
     } else {
-      api.pause()      
+      api.pause()
     }
   }
 
