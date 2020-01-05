@@ -22,13 +22,28 @@
     height: 100%;
   }
 
-
   .little-brother-player {
-    z-index: map-get($map: $layer, $key: player)
+    z-index: map-get($map: $layer, $key: player);
   }
 
   .little-brother-player-ui {
-    z-index: map-get($map: $layer, $key: player-ui)
+    z-index: map-get($map: $layer, $key: player-ui);
+
+  }
+
+  .little-brother-player-ctrl-bar {
+    z-index: map-get($map: $layer, $key: player-ctrl);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    background-color: $ctrl-bg;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
 
   }
 }

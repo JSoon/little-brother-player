@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const publicDate = require('./date'); // 发布日期
@@ -165,11 +166,11 @@ module.exports = {
 
   },
   plugins: [
-    new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin(
       // https://webpack.js.org/plugins/provide-plugin/
       // Automatically load modules instead of having to import or require them everywhere.
-      debug: '~/utils/debug'
-    }),
+      Object.assign(providePlugin())
+    ),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
@@ -184,3 +185,32 @@ module.exports = {
     })
   ]
 };
+
+//#region ProvidePlugin
+function providePlugin() {
+  const plugins = Object.assign(utilsPlugin(), {
+    ENUMS: '~/js/enums'
+  })
+
+  console.log(plugins)
+
+  return plugins
+}
+
+function utilsPlugin() {
+  let files = []
+  let plugin = {}
+
+  files = fs.readdirSync(path.resolve(constants.srcPath, 'js/utils'))
+
+  files.forEach(file => {
+    if (/\.js$/.test(file)) {
+      let fileName = file
+      let pluginName = file.replace('.js', '').toLocaleUpperCase()
+      plugin[pluginName] = `~/js/utils/${fileName}`
+    }
+  });
+
+  return plugin
+}
+//#endregion

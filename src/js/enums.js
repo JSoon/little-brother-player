@@ -8,7 +8,9 @@ const prefix = 'little-brother-player'
 const className = {
   player: prefix,
   playerWrapper: `${prefix}-wrapper`,
-  ui: `${prefix}-ui`
+  ui: `${prefix}-ui`,
+  ctrlBar: `${prefix}-ctrl-bar`,
+  play: `${prefix}-ctrl-play-btn`
 }
 
 //#endregion

@@ -1,8 +1,7 @@
 $wrapper-bg: #333;
+$ctrl-bg: rgba(0, 0, 0, .5);
 
 // z-index
-$layer: (
-  "player": 1,
-  "player-ui": 2
-);
-
+$layer: ("player": 1,
+  "player-ui": 2,
+  "player-ctrl": 20);

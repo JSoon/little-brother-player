@@ -1,34 +1,43 @@
+import UI from '~/js/ui/ui'
+
 /**
  * @description Player DOM
+ * @param {object}  params
+ * @param {object}  params.settings   initial settings
+ * @param {object}  params.api        
  */
-import {
-  className
-} from './enums'
+export default (params) => {
 
-export default (id) => {
+  const {
+    settings,
+    api
+  } = params
 
-  const lb = document.getElementById(id)
+  // dom that includes all player relevant doms
+  let dom = {}
+  params.dom = dom
+
+  const lb = document.getElementById(settings.id)
 
   // wrapper
   const videoEleWrapper = document.createElement('div')
-  videoEleWrapper.classList.add(className.playerWrapper)
+  videoEleWrapper.classList.add(ENUMS.className.playerWrapper)
+  params.videoEleWrapper = videoEleWrapper
+  dom.wrapper = videoEleWrapper
 
   // video
   const videoEle = document.createElement('video')
-  videoEle.classList.add(className.player)
+  videoEle.classList.add(ENUMS.className.player)
+  params.videoEle = videoEle
+  dom.video = videoEle
 
   // UI
-  const UIEle = document.createElement('div')
-  UIEle.classList.add(className.ui)
+  const UIEle = UI(params)
 
   videoEleWrapper.appendChild(videoEle)
   videoEleWrapper.appendChild(UIEle)
-    
+
   lb.append(videoEleWrapper)
 
-  return {
-    videoEleWrapper,
-    videoEle,
-    UIEle
-  }
+  return dom
 }
