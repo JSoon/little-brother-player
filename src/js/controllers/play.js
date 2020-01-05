@@ -1,5 +1,5 @@
 /**
- * @description Play&pause button
+ * @description Play & pause button
  * @param {object}  params
  */
 
