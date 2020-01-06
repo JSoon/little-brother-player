@@ -1,4 +1,5 @@
-import UI from '~/js/ui/ui'
+import UI from '~/js/ui/index'
+import nativeAttrs from './native-attrs'
 
 /**
  * @description Player DOM
@@ -30,6 +31,16 @@ export default (params) => {
   videoEle.classList.add(ENUMS.className.player)
   params.videoEle = videoEle
   dom.video = videoEle
+  // Set video native attributes
+  Object.keys(settings).forEach(key => {
+    if (
+      settings[key] &&
+      nativeAttrs.indexOf(key) !== -1
+    ) {
+      videoEle[key] = settings[key]
+    }
+  })
+
 
   // UI
   const UIEle = UI(params)

@@ -189,7 +189,7 @@ module.exports = {
 //#region ProvidePlugin
 function providePlugin() {
   const plugins = Object.assign(utilsPlugin(), {
-    ENUMS: '~/js/enums'
+    ENUMS: '~/js/enums/index'
   })
 
   console.log(plugins)

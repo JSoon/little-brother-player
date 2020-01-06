@@ -1,4 +1,4 @@
-import playBtn from '~/js/controllers/play'
+import playBtn from './play'
 
 /**
  * @description Controller bar

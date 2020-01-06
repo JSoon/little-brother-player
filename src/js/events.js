@@ -1,6 +1,7 @@
 /**
  * @description Player events
  * Documents: 
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
  * https://html.spec.whatwg.org/multipage/media.html#mediaevents
  * 
  * @param {object}  params

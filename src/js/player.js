@@ -4,15 +4,20 @@ import methods from '~/js/methods'
 import events from '~/js/events'
 
 /**
- * @description Initializing player
+ * @description Initialize player
  * 
  * @param {object}          settings
  * @param {boolean}         settings.debug      debug mode    
  * @param {string}          settings.id         player element id
  * @param {string}          settings.type       media type, i.e. mp4, ogg, m3u8
  * @param {array|string}    settings.media      media source
- * @param {boolean}         settings.autoplay    
- * @param {string}          settings.i18n       i18n code  
+ * @param {string}          settings.i18n       i18n code
+ * 
+ * Native attributes below
+ * @param {boolean}         settings.autoplay   
+ * @param {string}          settings.poster     a URL for an image to be shown while the video is downloading
+ * @param {string}          settings.preload    none, metadata, auto
+ * @param {boolean}         settings.muted      if true, media will be able to played despite the limit of autoplay policy
  */
 const littleBrother = (settings) => {
 
@@ -35,13 +40,13 @@ const littleBrother = (settings) => {
 
   let api = {}
 
-  // Generating player DOM
+  // Generate player DOM
   const DOM = dom({
     settings,
     api
   })
 
-  // Defining methods
+  // Define methods
   api = methods({
     settings,
     api,
@@ -55,7 +60,7 @@ const littleBrother = (settings) => {
     api.play()
   }
 
-  // Defining events
+  // Define events
   events({
     settings,
     api,
@@ -67,7 +72,7 @@ const littleBrother = (settings) => {
 
 }
 
-// Dealing with namespace conflict
+// Deal with namespace conflict
 if (!window.littleBrother) {
   window.littleBrother = littleBrother
 } else {

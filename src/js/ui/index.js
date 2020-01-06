@@ -1,5 +1,5 @@
 import debugPanel from '~/js/ui/debug'
-import controllerBar from '~/js/controllers/controllers'
+import controllerBar from '~/js/controllers/index'
 
 /**
  * @description Player UI

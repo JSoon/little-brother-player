@@ -1,5 +1,5 @@
 /**
- * @description Detecting type of data precisely
+ * @description Detect type of data precisely
  */
 export default (data) => {
   let type = Object.prototype.toString.call(data)
