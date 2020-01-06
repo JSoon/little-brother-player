@@ -2,5 +2,19 @@
 
 ![little-brother](https://github.com/JSoon/little-brother-player/blob/master/logo.jpg?raw=true)
 
-> 小老弟H5多媒体播放器。
+## Introduction
 
+小老弟H5多媒体播放器。
+
+> Little brother player, which is in progress, is a video player based on HTML5 and coded with ES2015.
+
+## Features in the nearly future
+
+- [x] Playing mp4
+- [ ] Playing m3u
+- [ ] Displaying poster
+- [ ] Advertisement
+- [ ] Statistics
+- [ ] Live comments (AKA 弹幕)
+- [ ] Text tracks
+- [ ] ...(TBD)
