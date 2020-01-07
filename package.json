@@ -4,7 +4,7 @@
   "description": "小老弟H5多媒体播放器.",
   "main": "src/app.js",
   "scripts": {
-    "dev": "webpack-dev-server --config build/webpack.common.js",
+    "dev": "webpack-dev-server --config build/webpack.common.js --host 0.0.0.0",
     "prod": "NODE_ENV=production webpack --progress --config build/webpack.prod.js"
   },
   "keywords": [

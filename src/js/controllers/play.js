@@ -11,8 +11,8 @@ export default (params) => {
   } = params
 
   const playBtn = document.createElement('div')
-  playBtn.classList.add(ENUMS.className.play)
-  playBtn.innerHTML = ENUMS.i18n[settings.i18n].play
+  playBtn.classList.add(Enums.className.play)
+  playBtn.innerHTML = Enums.i18n[settings.i18n].play
   dom.play = playBtn
 
   playBtn.onclick = (e) => {

@@ -13,7 +13,7 @@ export default (params) => {
   } = params
 
   const UIEle = document.createElement('div')
-  UIEle.classList.add(ENUMS.className.ui)
+  UIEle.classList.add(Enums.className.ui)
   if (settings.debug) {
     UIEle.appendChild(debugPanel(params))
   }

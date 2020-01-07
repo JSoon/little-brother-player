@@ -22,13 +22,13 @@ export default (params) => {
 
   // wrapper
   const videoEleWrapper = document.createElement('div')
-  videoEleWrapper.classList.add(ENUMS.className.playerWrapper)
+  videoEleWrapper.classList.add(Enums.className.playerWrapper)
   params.videoEleWrapper = videoEleWrapper
   dom.wrapper = videoEleWrapper
 
   // video
   const videoEle = document.createElement('video')
-  videoEle.classList.add(ENUMS.className.player)
+  videoEle.classList.add(Enums.className.player)
   params.videoEle = videoEle
   dom.video = videoEle
   // Set video native attributes

@@ -30,7 +30,7 @@ const littleBrother = (settings) => {
   // Merge defaults
   settings = Object.assign(defaults, settings)
 
-  if (!settings.id || TYPEOF.default(settings.id) !== 'string') {
+  if (!settings.id || Utils.typeof(settings.id) !== 'string') {
     throw 'No player id or type is not string!'
   }
 
@@ -76,7 +76,7 @@ const littleBrother = (settings) => {
 if (!window.littleBrother) {
   window.littleBrother = littleBrother
 } else {
-  debug.log(` 小老弟你怎么回事？大老哥H5播放器冲鸭 ─=≡Σ(((つ•̀ω•́)つ') `)
+  Utils.debug.log(` 小老弟你怎么回事？大老哥H5播放器冲鸭 ─=≡Σ(((つ•̀ω•́)つ') `)
   window.bigBrother = littleBrother
 }
 

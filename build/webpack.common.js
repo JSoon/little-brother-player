@@ -188,9 +188,14 @@ module.exports = {
 
 //#region ProvidePlugin
 function providePlugin() {
-  const plugins = Object.assign(utilsPlugin(), {
-    ENUMS: '~/js/enums/index'
-  })
+  // const plugins = Object.assign(utilsPlugin(), {
+  //   ENUMS: '~/js/enums/index'
+  // })
+
+  const plugins = {
+    Utils: ['~/js/utils/index', 'default'],
+    Enums: '~/js/enums/index'
+  }
 
   console.log(plugins)
 

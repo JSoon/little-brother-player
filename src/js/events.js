@@ -39,22 +39,22 @@ const events = (params) => {
   })
 
   api.on('pause', () => {
-    DOM.play.innerHTML = ENUMS.i18n[settings.i18n].play
+    DOM.play.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
   api.on('ended', () => {
-    DOM.play.innerHTML = ENUMS.i18n[settings.i18n].play
+    DOM.play.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
   api.on('play', () => {
-    DOM.play.innerHTML = ENUMS.i18n[settings.i18n].pause
+    DOM.play.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
 
   api.on('playing', () => {
-    DOM.play.innerHTML = ENUMS.i18n[settings.i18n].pause
+    DOM.play.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
 
@@ -69,21 +69,21 @@ const events = (params) => {
 
   // https://html.spec.whatwg.org/multipage/media.html#event-media-loadedmetadata
   api.on('loadedmetadata', () => {
-    DEBUG.log(`duration: ${DOM.video.duration}s`)
-    DEBUG.log(`intrinsic dimensions: ${DOM.video.videoWidth} x ${DOM.video.videoHeight}`)
+    Utils.debug.log(`duration: ${DOM.video.duration}s`)
+    Utils.debug.log(`intrinsic dimensions: ${DOM.video.videoWidth} x ${DOM.video.videoHeight}`)
 
   })
 
   api.on('loadstart', () => {
-    DEBUG.log(`media: ${DOM.video.currentSrc}`)
+    Utils.debug.log(`media: ${DOM.video.currentSrc}`)
 
   })
 
   api.on('progress', () => {
     if (DOM.video.buffered.length) {
-      DEBUG.log(`buffered length: ${DOM.video.buffered.length}`)
-      DEBUG.log(`buffered start: ${DOM.video.buffered.start(0)}`)
-      DEBUG.log(`buffered end: ${DOM.video.buffered.end(0)}`)
+      Utils.debug.log(`buffered length: ${DOM.video.buffered.length}`)
+      Utils.debug.log(`buffered start: ${DOM.video.buffered.start(0)}`)
+      Utils.debug.log(`buffered end: ${DOM.video.buffered.end(0)}`)
     }
 
 
@@ -110,7 +110,7 @@ const events = (params) => {
   })
 
   api.on('timeupdate', () => {
-    DEBUG.log(`current: ${DOM.video.currentTime}`)
+    Utils.debug.log(`current: ${DOM.video.currentTime}`)
   })
 
   api.on('volumechange', () => {

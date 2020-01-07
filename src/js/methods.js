@@ -56,7 +56,7 @@ const methods = (params) => {
   function load(params) {
     DOM.video.innerHTML = ''
 
-    if (TYPEOF.default(params.media) === 'string') {
+    if (Utils.typeof(params.media) === 'string') {
       const mediaSrc = params.media
       // You have to pass params.type if params.media is a url
       if (!params.type) {
@@ -71,7 +71,7 @@ const methods = (params) => {
     media.forEach(medium => {
       const srcEle = document.createElement('source')
       srcEle.src = medium.src
-      srcEle.type = ENUMS.MIME[medium.type]
+      srcEle.type = Enums.MIME[medium.type]
 
       if (!canPlayType(srcEle.type)) {
         throw 'Invalid media type!'
@@ -123,7 +123,7 @@ const methods = (params) => {
   function on(eventName, func) {
 
     DOM.video.addEventListener(eventName, () => {
-      DEBUG.log(`Event triggered: ${eventName}`)
+      Utils.debug.log(`Event triggered: ${eventName}`)
 
       if (settings.debug) {
         let info = `
@@ -142,12 +142,12 @@ const methods = (params) => {
     })
 
     if (eventName === 'encrypted') {
-      DEBUG.log(`Event triggered: ${eventName}`)
+      Utils.debug.log(`Event triggered: ${eventName}`)
       DOM.video.onencrypted = func
     }
 
     if (eventName === 'waitingforkey') {
-      DEBUG.log(`Event triggered: ${eventName}`)
+      Utils.debug.log(`Event triggered: ${eventName}`)
       DOM.video.onwaitingforkey = func
     }
 

@@ -12,7 +12,7 @@ export default (params) => {
   } = params
 
   const controllerBar = document.createElement('div')
-  controllerBar.classList.add(ENUMS.className.ctrlBar)
+  controllerBar.classList.add(Enums.className.ctrlBar)
   controllerBar.appendChild(playBtn(params))
   dom.ctrl = controllerBar
 

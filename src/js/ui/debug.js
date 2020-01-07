@@ -13,7 +13,7 @@ export default (params) => {
   } = params
 
   const debugPanel = document.createElement('div')
-  debugPanel.classList.add(ENUMS.className.debugPanel)
+  debugPanel.classList.add(Enums.className.debugPanel)
   dom.debug = debugPanel
 
   return debugPanel
