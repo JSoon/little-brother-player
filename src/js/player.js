@@ -1,7 +1,5 @@
 import '~/js/version'
 import dom from '~/js/dom'
-import methods from '~/js/methods'
-import events from '~/js/events'
 
 /**
  * @description Initialize player
@@ -38,35 +36,17 @@ const littleBrother = (settings) => {
     throw 'No media sources!'
   }
 
-  let api = {}
-
-  // Generate player DOM
-  const DOM = dom({
-    settings,
+  /**
+   * @description Generate player DOM, Define methods & Define methods
+   */
+  const {
     api
-  })
-
-  // Define methods
-  api = methods({
-    settings,
-    api,
-    DOM
+  } = dom({
+    settings
   })
 
   // Load media
   api.load(settings)
-
-  if (settings.autoplay) {
-    api.play()
-  }
-
-  // Define events
-  events({
-    settings,
-    api,
-    DOM
-  })
-
 
   return api
 

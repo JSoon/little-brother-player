@@ -1,0 +1,10 @@
+@import "~/sass/variables";
+
+.little-brother-player-com-tooltip {
+  z-index: map-get($map: $layer, $key: player-tooltip);
+  position: fixed;
+  padding: 0 .2rem;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.2rem;
+}

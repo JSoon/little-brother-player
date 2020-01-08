@@ -1,10 +1,6 @@
-/**
- * @description Progressbar
- * @param {object}  params
- */
+import tooltip from '~/js/components/tooltip/tooltip'
 
 const bufferSet = []
-let seekTime = null
 
 const newBuffer = (ctrlEle) => {
   const bufferBar = document.createElement('div')
@@ -56,6 +52,11 @@ const coordsToTime = (coords, duration) => {
   return time
 }
 
+/**
+ * @description Progressbar
+ * @param {object}  params
+ */
+
 export default (params) => {
   const {
     settings,
@@ -65,20 +66,39 @@ export default (params) => {
   const video = dom.video
 
   const ctrlEle = document.createElement('div')
-  dom.progressbar = ctrlEle
-
   ctrlEle.classList.add(Enums.className.progressbar)
-  newBuffer(ctrlEle) // Initial buffer
+  dom.progressbar = ctrlEle
+  
+  const ctrlBarEle = document.createElement('div')
+  ctrlBarEle.classList.add(Enums.className.progressbarCtrler)
+  ctrlEle.appendChild(ctrlBarEle)
+  // Initial buffer
+  updateBuffer(ctrlEle, video.buffered, video.duration)
+
+
+  tooltip({
+    selector: ctrlBarEle,
+    title: '呵呵',
+    attached: true,
+    // Only for progressbar
+    progressbar: {
+      ctrlEle,
+      video,
+      relativeCoords,
+      coordsToTime
+    }
+  })
+
 
   // Show the time of the current position of cursor
   ctrlEle.addEventListener('mousemove', (event) => {
-    const coords = relativeCoords(ctrlEle, event)
-  })
-  ctrlEle.addEventListener('mousemove', (event) => {
-
+    
   })
 
   ctrlEle.addEventListener('click', (event) => {
+    // console.log(event.currentTarget) // Point to the element to which event is bound, i.e. ctrlEle here
+    // console.log(event.target); // Point to the element on which we click, and the click event will bubble up to the currentTarget eventually
+
     const coords = relativeCoords(ctrlEle, event)
     video.currentTime = coordsToTime(coords, video.duration)
   })

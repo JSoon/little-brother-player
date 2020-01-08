@@ -1,22 +1,26 @@
 import UI from '~/js/ui/index'
 import nativeAttrs from './native-attrs'
+import methods from '~/js/methods'
+import events from '~/js/events'
 
 /**
  * @description Player DOM
  * @param {object}  params
  * @param {object}  params.settings   initial settings
- * @param {object}  params.api        
  */
 export default (params) => {
 
   const {
-    settings,
-    api
+    settings
   } = params
 
   // dom that includes all player relevant doms
-  let dom = {}
+  const dom = {}
   params.dom = dom
+
+  // api
+  const api = {}
+  params.api = api
 
   const lb = document.getElementById(settings.id)
 
@@ -41,8 +45,13 @@ export default (params) => {
     }
   })
 
+  // Define methods
+  methods(params)
 
-  // UI
+  // Define events
+  events(params)
+
+  // UI components
   const UIEle = UI(params)
 
   videoEleWrapper.appendChild(videoEle)
@@ -50,5 +59,5 @@ export default (params) => {
 
   lb.append(videoEleWrapper)
 
-  return dom
+  return params
 }

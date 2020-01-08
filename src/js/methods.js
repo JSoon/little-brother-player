@@ -3,7 +3,7 @@
  * @param {object}  params
  * @param {object}  params.settings
  * @param {object}  params.api
- * @param {object}  params.DOM
+ * @param {object}  params.dom
  */
 
 const methods = (params) => {
@@ -11,14 +11,14 @@ const methods = (params) => {
   const {
     settings,
     api,
-    DOM
+    dom
   } = params
 
   api.canPlayType = canPlayType
 
   function canPlayType(MIME) {
     // probably, maybe
-    if (DOM.video.canPlayType(MIME)) {
+    if (dom.video.canPlayType(MIME)) {
       return true
     }
     // empty string
@@ -28,7 +28,7 @@ const methods = (params) => {
   api.seek = seek
 
   function seek(sec) {
-    DOM.video.currentTime = sec
+    dom.video.currentTime = sec
   }
 
   /**
@@ -40,7 +40,7 @@ const methods = (params) => {
   api.play = play
 
   function play() {
-    return DOM.video.play()
+    return dom.video.play()
   }
 
   /**
@@ -54,7 +54,7 @@ const methods = (params) => {
   api.load = load
 
   function load(params) {
-    DOM.video.innerHTML = ''
+    dom.video.innerHTML = ''
 
     if (Utils.typeof(params.media) === 'string') {
       const mediaSrc = params.media
@@ -77,58 +77,58 @@ const methods = (params) => {
         throw 'Invalid media type!'
       }
 
-      DOM.video.appendChild(srcEle)
+      dom.video.appendChild(srcEle)
     })
-    DOM.video.appendChild(document.createTextNode(`Sorry, your browser doesn't support embedded DOM.videos.`))
+    dom.video.appendChild(document.createTextNode(`Sorry, your browser doesn't support embedded dom.videos.`))
   }
 
   api.pause = pause
 
   function pause() {
-    DOM.video.pause()
+    dom.video.pause()
   }
 
   api.getDuration = getDuration
 
   function getDuration() {
-    return DOM.video.duration
+    return dom.video.duration
   }
 
   api.getCurrentTime = getCurrentTime
 
   function getCurrentTime() {
-    return DOM.video.currentTime
+    return dom.video.currentTime
   }
 
   api.isPlaying = isPlaying
 
   function isPlaying() {
-    return !DOM.video.paused && !DOM.video.ended
+    return !dom.video.paused && !dom.video.ended
   }
 
   api.isPaused = isPaused
 
   function isPaused() {
-    return DOM.video.paused
+    return dom.video.paused
   }
 
   api.isEnded = isEnded
 
   function isEnded() {
-    return DOM.video.ended
+    return dom.video.ended
   }
 
   api.isMuted = isMuted
 
   function isMuted() {
-    return DOM.video.ended
+    return dom.video.ended
   }
 
   api.on = on
 
   function on(eventName, func) {
 
-    DOM.video.addEventListener(eventName, () => {
+    dom.video.addEventListener(eventName, () => {
       Utils.debug.log(`Event triggered: ${eventName}`)
 
       func()
@@ -136,16 +136,15 @@ const methods = (params) => {
 
     if (eventName === 'encrypted') {
       Utils.debug.log(`Event triggered: ${eventName}`)
-      DOM.video.onencrypted = func
+      dom.video.onencrypted = func
     }
 
     if (eventName === 'waitingforkey') {
       Utils.debug.log(`Event triggered: ${eventName}`)
-      DOM.video.onwaitingforkey = func
+      dom.video.onwaitingforkey = func
     }
 
   }
-
 
   return api
 

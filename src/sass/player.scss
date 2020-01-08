@@ -69,7 +69,17 @@
       height: .5rem;
       background-color: sandybrown;
 
+      .little-brother-player-ctrl-progressbar-ctrler {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0        
+      }
+
       .little-brother-player-ctrl-progressbar-buffer {
+        z-index: 1;
         position: absolute;
         width: 0;
         height: inherit;

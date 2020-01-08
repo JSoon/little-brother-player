@@ -10,10 +10,9 @@ export default (params) => {
     dom
   } = params
 
-  const video = dom.video
-
   const ctrlEle = document.createElement('div')
   dom.play = ctrlEle
+
 
   ctrlEle.classList.add(Enums.className.play)
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
@@ -26,22 +25,22 @@ export default (params) => {
     }
   }
 
-  video.addEventListener('pause', () => {
+  api.on('pause', () => {
     ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
-  video.addEventListener('ended', () => {
+  api.on('ended', () => {
     ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
-  video.addEventListener('play', () => {
+  api.on('play', () => {
     ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
 
-  video.addEventListener('playing', () => {
+  api.on('playing', () => {
     ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
