@@ -14,9 +14,7 @@ export default (params) => {
 
   const UIEle = document.createElement('div')
   UIEle.classList.add(Enums.className.ui)
-  if (settings.debug) {
-    UIEle.appendChild(debugPanel(params))
-  }
+  debugPanel(params) && UIEle.appendChild(debugPanel(params))
   UIEle.appendChild(controllerBar(params))
   dom.ui = UIEle
 

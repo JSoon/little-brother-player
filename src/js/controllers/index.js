@@ -1,4 +1,5 @@
 import playBtn from './play'
+import progressbar from './progressbar'
 
 /**
  * @description Controller bar
@@ -12,10 +13,12 @@ export default (params) => {
   } = params
 
   const controllerBar = document.createElement('div')
-  controllerBar.classList.add(Enums.className.ctrlBar)
-  controllerBar.appendChild(playBtn(params))
   dom.ctrl = controllerBar
+  
+  controllerBar.classList.add(Enums.className.ctrlBar)
 
+  controllerBar.appendChild(playBtn(params))
+  controllerBar.appendChild(progressbar(params))
 
   return controllerBar
 }

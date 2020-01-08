@@ -88,6 +88,12 @@ const methods = (params) => {
     DOM.video.pause()
   }
 
+  api.getDuration = getDuration
+
+  function getDuration() {
+    return DOM.video.duration
+  }
+
   api.getCurrentTime = getCurrentTime
 
   function getCurrentTime() {
@@ -124,19 +130,6 @@ const methods = (params) => {
 
     DOM.video.addEventListener(eventName, () => {
       Utils.debug.log(`Event triggered: ${eventName}`)
-
-      if (settings.debug) {
-        let info = `
-          <p>uri: ${DOM.video.currentSrc}</p>
-          <p>currentTime: ${DOM.video.currentTime}s</p>
-          <p>duration: ${DOM.video.duration}s</p>
-          <p>intrinsic dimensions: ${DOM.video.videoWidth} x ${DOM.video.videoHeight}</p>
-          <p>buffered length: ${DOM.video.buffered.length}</p>
-          <p>buffered start: ${DOM.video.buffered.length && DOM.video.buffered.start(0)}s</p>
-          <p>buffered end: ${DOM.video.buffered.length && DOM.video.buffered.end(0)}s</p>
-        `
-        DOM.debug.innerHTML = info
-      }
 
       func()
     })

@@ -1,7 +1,7 @@
 /**
  * @description Enums
  */
-import className from './className'
+import className from './classname'
 import MIME from './MIME'
 import i18n from './i18n'
 

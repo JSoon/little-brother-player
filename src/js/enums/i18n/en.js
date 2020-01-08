@@ -1,7 +1,7 @@
-const en = {
+const lang = {
   play: 'play',
   pause: 'pause',
   stop: 'stop'
 }
 
-export default en
+export default lang

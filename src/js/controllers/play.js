@@ -10,12 +10,15 @@ export default (params) => {
     dom
   } = params
 
-  const playBtn = document.createElement('div')
-  playBtn.classList.add(Enums.className.play)
-  playBtn.innerHTML = Enums.i18n[settings.i18n].play
-  dom.play = playBtn
+  const video = dom.video
 
-  playBtn.onclick = (e) => {
+  const ctrlEle = document.createElement('div')
+  dom.play = ctrlEle
+
+  ctrlEle.classList.add(Enums.className.play)
+  ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
+
+  ctrlEle.onclick = (e) => {
     if (!api.isPlaying()) {
       api.play()
     } else {
@@ -23,5 +26,25 @@ export default (params) => {
     }
   }
 
-  return playBtn
+  video.addEventListener('pause', () => {
+    ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
+
+  })
+
+  video.addEventListener('ended', () => {
+    ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
+
+  })
+
+  video.addEventListener('play', () => {
+    ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
+
+  })
+
+  video.addEventListener('playing', () => {
+    ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
+
+  })
+
+  return ctrlEle
 }

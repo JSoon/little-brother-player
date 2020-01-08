@@ -39,22 +39,18 @@ const events = (params) => {
   })
 
   api.on('pause', () => {
-    DOM.play.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
   api.on('ended', () => {
-    DOM.play.innerHTML = Enums.i18n[settings.i18n].play
 
   })
 
   api.on('play', () => {
-    DOM.play.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
 
   api.on('playing', () => {
-    DOM.play.innerHTML = Enums.i18n[settings.i18n].pause
 
   })
 
@@ -80,11 +76,12 @@ const events = (params) => {
   })
 
   api.on('progress', () => {
-    if (DOM.video.buffered.length) {
-      Utils.debug.log(`buffered length: ${DOM.video.buffered.length}`)
-      Utils.debug.log(`buffered start: ${DOM.video.buffered.start(0)}`)
-      Utils.debug.log(`buffered end: ${DOM.video.buffered.end(0)}`)
-    }
+    // if (DOM.video.buffered.length) {
+    //   Utils.debug.log(`buffered length: ${DOM.video.buffered.length}`)
+    //   Utils.debug.log(`buffered start: ${DOM.video.buffered.start(0)}`)
+    //   Utils.debug.log(`buffered end: ${DOM.video.buffered.end(0)}`)
+      
+    // }
 
 
   })
@@ -110,7 +107,7 @@ const events = (params) => {
   })
 
   api.on('timeupdate', () => {
-    Utils.debug.log(`current: ${DOM.video.currentTime}`)
+    // Utils.debug.log(`current: ${DOM.video.currentTime}`)
   })
 
   api.on('volumechange', () => {

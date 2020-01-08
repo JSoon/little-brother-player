@@ -12,6 +12,6 @@ const nativeAttrs = [
   'poster',
   'preload',
   'width'
-].join(',')
+]
 
 export default nativeAttrs
