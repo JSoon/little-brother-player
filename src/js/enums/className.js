@@ -1,7 +1,8 @@
 const prefix = 'little-brother-player'
 
 const className = {
-  player: prefix,
+  video: `${prefix}-video`,
+  videoWrapper: `${prefix}-video-wrapper`,
   playerWrapper: `${prefix}-wrapper`,
 
   // UI

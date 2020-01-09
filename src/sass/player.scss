@@ -6,12 +6,21 @@
   height: 100%;
   background-color: $wrapper-bg;
 
+  * {
+    box-sizing: border-box;
+  }
+
   &::after {
     content: "";
     padding-top: percentage($number: 9/16);
   }
 
-  .little-brother-player,
+  .little-brother-player-video-wrapper {
+    z-index: map-get($map: $layer, $key: player);
+  }
+
+  .little-brother-player-video-wrapper,
+  .little-brother-player-video,
   .little-brother-player-ui {
     position: absolute;
     top: 0;
@@ -22,20 +31,27 @@
     height: 100%;
   }
 
-  .little-brother-player {
-    z-index: map-get($map: $layer, $key: player);
-  }
+  .little-brother-player-video {}
 
   // Main UI
   .little-brother-player-ui {
     z-index: map-get($map: $layer, $key: player-ui);
 
-    // Debug information
+    // Debug information panel
+    &:hover {
+      .little-brother-player-ui-debug-panel {
+        opacity: .4;
+        background-color: transparent;
+      }
+    }
+
     .little-brother-player-ui-debug-panel {
       width: 100%;
       height: 100%;
+      padding: .3rem .5rem;
       color: white;
-      background-color: rgba($color: #000000, $alpha: .5);
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      transition: all .4s;
 
       p {
         margin: 0;

@@ -25,14 +25,17 @@ export default (params) => {
   const lb = document.getElementById(settings.id)
 
   // wrapper
-  const videoEleWrapper = document.createElement('div')
-  videoEleWrapper.classList.add(Enums.className.playerWrapper)
-  params.videoEleWrapper = videoEleWrapper
-  dom.wrapper = videoEleWrapper
+  const playerWrapper = document.createElement('div')
+  playerWrapper.classList.add(Enums.className.playerWrapper)
+  params.playerWrapper = playerWrapper
+  dom.wrapper = playerWrapper
 
   // video
   const videoEle = document.createElement('video')
-  videoEle.classList.add(Enums.className.player)
+  videoEle.classList.add(Enums.className.video)
+  const videoWrapper = document.createElement('div')
+  videoWrapper.classList.add(Enums.className.videoWrapper)
+  videoWrapper.appendChild(videoEle)
   params.videoEle = videoEle
   dom.video = videoEle
   // Set video native attributes
@@ -54,10 +57,10 @@ export default (params) => {
   // UI components
   const UIEle = UI(params)
 
-  videoEleWrapper.appendChild(videoEle)
-  videoEleWrapper.appendChild(UIEle)
+  playerWrapper.appendChild(videoWrapper)
+  playerWrapper.appendChild(UIEle)
 
-  lb.append(videoEleWrapper)
+  lb.append(playerWrapper)
 
   return params
 }

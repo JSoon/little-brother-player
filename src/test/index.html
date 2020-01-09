@@ -9,15 +9,31 @@
 
   <link rel="stylesheet" href="/little.brother.player.css">
   <style>
+    .test-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
     #J_LittleBrotherPlayer {
+      position: relative;
       width: 640px;
       height: 360px;
+      overflow: hidden;
+      margin: 0 2rem;
+      border-radius: .2rem;
+      box-shadow: 0 2rem 5rem rgba(0, 0, 0, .6);
     }
   </style>
 </head>
 
 <body>
-  <div id="J_LittleBrotherPlayer"></div>
+  <div class="test-page">
+    <img src="./logo-l.jpg" alt="logo-l">
+    <div id="J_LittleBrotherPlayer"></div>
+    <img src="./logo-r.jpg" alt="logo-r">
+  </div>
 
   <script src="/little.brother.player.js"></script>
   <script>
