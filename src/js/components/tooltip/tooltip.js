@@ -3,7 +3,7 @@ import './tooltip.scss'
 // Convert seconds to HH:MM:SS format
 const normalizeSec = (seconds) => {
   if (Utils.typeof(seconds) !== 'number') {
-    return
+    throw 'Argument must be a number!'
   }
 
   return new Date(Math.floor(seconds * 1000)).toISOString().substr(11, 8)
@@ -48,6 +48,9 @@ const updateTooltipPosition = (params) => {
     tipEle.style.left = targetBounds.left + 'px'
   }
 
+  // Adjust styles
+  tipEle.style.top = parseInt(tipEle.style.top) - 5 + 'px'
+
 }
 
 /**
@@ -58,19 +61,22 @@ const updateTooltipPosition = (params) => {
  * @param {string}          title             Tip text
  * @param {object}          progressbar       Used to update cursor time of progressbar only
  * @param {boolean}         attached          If being able to move with cursor
+ * @param {object}          container         Relative boundary element of tooltip, default to document.body
  */
 const tooltip = (params) => {
   const {
     selector,
     title,
     progressbar,
-    attached
+    attached,
+    container
   } = params
 
   if (!selector) {
     return
   }
 
+  const containerEle = container || document.body
   let targetEle = null
   // HTMLElement
   if (Utils.typeof(selector) === 'htmldivelement' || selector.indexOf('#') !== -1) {
@@ -97,8 +103,9 @@ const tooltip = (params) => {
     }
 
     tipEle = document.createElement('div')
-    document.body.appendChild(tipEle)
     tipEle.classList.add(Enums.className.tooltip)
+
+    containerEle.appendChild(tipEle)
 
     if (!attached) {
       updateTooltipPosition(Object.assign(params, {

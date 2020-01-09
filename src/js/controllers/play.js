@@ -12,7 +12,7 @@ export default (params) => {
 
   const ctrlEle = document.createElement('div')
   dom.play = ctrlEle
-
+  dom.ctrls.left.appendChild(ctrlEle)
 
   ctrlEle.classList.add(Enums.className.play)
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].play

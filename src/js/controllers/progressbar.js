@@ -68,6 +68,7 @@ export default (params) => {
   const ctrlEle = document.createElement('div')
   ctrlEle.classList.add(Enums.className.progressbar)
   dom.progressbar = ctrlEle
+  dom.ctrlbar.appendChild(ctrlEle)
   
   const ctrlBarEle = document.createElement('div')
   ctrlBarEle.classList.add(Enums.className.progressbarCtrler)
@@ -80,6 +81,7 @@ export default (params) => {
     selector: ctrlBarEle,
     title: '呵呵',
     attached: true,
+    container: dom.wrapper,
     // Only for progressbar
     progressbar: {
       ctrlEle,

@@ -53,13 +53,8 @@
     right: 0;
     height: 2rem;
     background-color: $ctrl-bg;
-    display: flex;
-    align-content: center;
-    align-items: center;
     color: #fff;
     cursor: pointer;
-
-    .little-brother-player-ctrl-play {}
 
     .little-brother-player-ctrl-progressbar {
       position: absolute;
@@ -75,7 +70,7 @@
         top: 0;
         right: 0;
         bottom: 0;
-        left: 0        
+        left: 0
       }
 
       .little-brother-player-ctrl-progressbar-buffer {
@@ -86,5 +81,30 @@
         background-color: greenyellow;
       }
     }
+
+    .little-brother-player-ctrl-bar-ctrls {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: inherit;
+      display: flex;
+      align-items: center;
+    }
+
+    .little-brother-player-ctrl-bar-left {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .little-brother-player-ctrl-bar-right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .little-brother-player-ctrl-play {}
   }
 }

@@ -10,10 +10,14 @@ const className = {
 
   // Controllers
   ctrlBar: `${prefix}-ctrl-bar`,
-  play: `${prefix}-ctrl-play`,
   progressbar: `${prefix}-ctrl-progressbar`,
   progressbarCtrler: `${prefix}-ctrl-progressbar-ctrler`,
   progressbarBuffer: `${prefix}-ctrl-progressbar-buffer`,
+  ctrls: `${prefix}-ctrl-bar-ctrls`,
+  ctrlsLeft: `${prefix}-ctrl-bar-left`,
+  ctrlsRight: `${prefix}-ctrl-bar-right`,
+  play: `${prefix}-ctrl-play`,
+  fullscreen: `${prefix}-ctrl-fullscreen`,
 
   // Components
   tooltip: `${prefix}-com-tooltip`

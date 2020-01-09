@@ -1,5 +1,6 @@
 import playBtn from './play'
 import progressbar from './progressbar'
+import fullscreen from './fullscreen'
 
 /**
  * @description Controller bar
@@ -13,12 +14,26 @@ export default (params) => {
   } = params
 
   const controllerBar = document.createElement('div')
-  dom.ctrl = controllerBar
-  
+  dom.ctrlbar = controllerBar
   controllerBar.classList.add(Enums.className.ctrlBar)
 
-  controllerBar.appendChild(playBtn(params))
-  controllerBar.appendChild(progressbar(params))
+  const controllers = document.createElement('div')
+  const controllersLeft = document.createElement('div')
+  const controllersRight = document.createElement('div')
+  dom.ctrls = controllers
+  dom.ctrls.left = controllersLeft
+  dom.ctrls.right = controllersRight
+  controllers.classList.add(Enums.className.ctrls)
+  controllersLeft.classList.add(Enums.className.ctrlsLeft)
+  controllersRight.classList.add(Enums.className.ctrlsRight)
+  controllers.appendChild(controllersLeft)
+  controllers.appendChild(controllersRight)
+
+  controllerBar.appendChild(controllers)
+
+  progressbar(params)
+  playBtn(params)
+  fullscreen(params)
 
   return controllerBar
 }
