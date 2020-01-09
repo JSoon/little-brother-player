@@ -31,7 +31,7 @@ module.exports = {
     open: true,
     openPage: 'src/test',
     contentBase: constants.rootPath,
-    watchContentBase: true,
+    watchContentBase: false,
     compress: true,
     port: 9000,
     watchOptions: {
