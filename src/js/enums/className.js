@@ -18,6 +18,7 @@ const className = {
   ctrlsRight: `${prefix}-ctrl-bar-right`,
   play: `${prefix}-ctrl-play`,
   fullscreen: `${prefix}-ctrl-fullscreen`,
+  pip: `${prefix}-ctrl-pip`,
 
   // Components
   tooltip: `${prefix}-com-tooltip`

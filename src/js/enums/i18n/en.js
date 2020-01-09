@@ -1,8 +1,9 @@
 const lang = {
-  play: 'play',
-  pause: 'pause',
-  stop: 'stop',
-  fullscreen: 'fullscreen'
+  play: 'Play',
+  pause: 'Pause',
+  stop: 'Stop',
+  fullscreen: 'Fullscreen',
+  pip: 'PiP',
 }
 
 export default lang

@@ -88,20 +88,27 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: inherit;
       display: flex;
       align-items: center;
+      padding: 0 .2rem;
+      height: inherit;
+    }
+
+    .little-brother-player-ctrl-bar-left,
+    .little-brother-player-ctrl-bar-right {
+      flex: 1;
+      display: flex;
+
+      >* {
+        margin: 0 .2rem;
+      }
     }
 
     .little-brother-player-ctrl-bar-left {
-      flex: 1;
-      display: flex;
       justify-content: flex-start;
     }
 
     .little-brother-player-ctrl-bar-right {
-      flex: 1;
-      display: flex;
       justify-content: flex-end;
     }
 

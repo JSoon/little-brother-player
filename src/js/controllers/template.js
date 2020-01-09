@@ -14,6 +14,7 @@ export default (params) => {
   const ctrlEle = document.createElement('div')
   dom.controllername = ctrlEle
   
+  ctrlEle.innerHTML = Enums.i18n[settings.i18n].controllername
   ctrlEle.classList.add(Enums.className.controllername)
 
   return ctrlEle
