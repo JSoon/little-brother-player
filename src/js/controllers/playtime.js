@@ -14,13 +14,25 @@ export default (params) => {
   const ctrlEle = document.createElement('div')
   dom.playtime = ctrlEle
   dom.ctrls.left.appendChild(ctrlEle)
-
-  ctrlEle.innerHTML = ''
   ctrlEle.classList.add(Enums.className.playtime)
 
+  const current = document.createElement('span')
+  const separator = document.createElement('span')
+  const duration = document.createElement('span')
+
+  ctrlEle.appendChild(current)
+  ctrlEle.appendChild(separator)
+  ctrlEle.appendChild(duration)
+
   // Playtime control
+  api.on('loadedmetadata', e => {
+    current.innerHTML = '00:00'
+    separator.innerHTML = ' / '
+    duration.innerHTML = `${Utils.secToHHMMSS(api.getDuration())}`
+  })
+
   api.on('timeupdate', e => {
-    ctrlEle.innerHTML = `${Utils.secToHHMMSS(api.getCurrentTime())} / ${Utils.secToHHMMSS(api.getDuration())}`
+    current.innerHTML = `${Utils.secToHHMMSS(api.getCurrentTime())}`
   })
 
   return ctrlEle

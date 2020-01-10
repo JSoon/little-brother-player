@@ -27,8 +27,10 @@ const updateBuffer = (ctrlEle, buffered, duration) => {
   // Update all buffer bars
   for (let i = 0; i < buffered.length; i++) {
     const buffer = newBuffer(ctrlEle)
-    const bufferedTime = buffered.end(i) - buffered.start(i)
-    buffer.style.left = `${buffered.start(i) / duration * 100}%`
+    const bufferedStart = Math.round(buffered.start(i))
+    const bufferedEnd = Math.round(buffered.end(i))
+    const bufferedTime = bufferedEnd - bufferedStart
+    buffer.style.left = `${bufferedStart / duration * 100}%`
     buffer.style.width = `${bufferedTime / duration * 100}%`
   }
 }
