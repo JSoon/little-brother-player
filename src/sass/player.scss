@@ -72,32 +72,6 @@
     color: #fff;
     cursor: pointer;
 
-    .little-brother-player-ctrl-progressbar {
-      position: absolute;
-      bottom: 100%;
-      left: 0;
-      right: 0;
-      height: .5rem;
-      background-color: sandybrown;
-
-      .little-brother-player-ctrl-progressbar-ctrler {
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0
-      }
-
-      .little-brother-player-ctrl-progressbar-buffer {
-        z-index: 1;
-        position: absolute;
-        width: 0;
-        height: inherit;
-        background-color: greenyellow;
-      }
-    }
-
     .little-brother-player-ctrl-bar-ctrls {
       position: absolute;
       top: 0;
@@ -128,6 +102,74 @@
       justify-content: flex-end;
     }
 
+    // Progressbar
+    .little-brother-player-ctrl-progressbar {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: .5rem;
+      background-color: sandybrown;
+
+      .little-brother-player-ctrl-progressbar-buffer {
+        z-index: 1;
+        position: absolute;
+        width: 0;
+        height: inherit;
+        background-color: greenyellow;
+      }
+
+      .little-brother-player-ctrl-progressbar-progress {
+        z-index: 2;
+        position: absolute;
+        width: 0;
+        height: inherit;
+        background-color: rgba($color: black, $alpha: .5);
+      }
+
+      .little-brother-player-ctrl-progressbar-ctrler {
+        z-index: 3;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0
+      }
+    }
+
+    // Play button
     .little-brother-player-ctrl-play {}
+
+    // Volume
+    .little-brother-player-ctrl-volume-wrapper {
+      display: flex;
+      align-items: center;
+
+      .little-brother-player-ctrl-volume-icon {}
+
+      .little-brother-player-ctrl-volume {
+        position: relative;
+        width: 3rem;
+        height: 1rem;
+
+        .little-brother-player-ctrl-volume-progress {
+          z-index: 2;
+          position: absolute;
+          width: 0;
+          height: inherit;
+          background-color: #f44336;
+        }
+
+        .little-brother-player-ctrl-volume-ctrler {
+          z-index: 3;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0
+        }
+      }
+    }
+
   }
 }

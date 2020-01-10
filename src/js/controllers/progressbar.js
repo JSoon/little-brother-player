@@ -1,5 +1,9 @@
 import tooltip from '~/js/components/tooltip/tooltip'
 
+const {
+  relativeCoords
+} = Utils
+
 const bufferSet = []
 
 const newBuffer = (ctrlEle) => {
@@ -29,17 +33,8 @@ const updateBuffer = (ctrlEle, buffered, duration) => {
   }
 }
 
-// Get relative coordinates of cursor within an element
-const relativeCoords = (ele, mouseEvent) => {
-  const bounds = ele.getBoundingClientRect()
-  const x = mouseEvent.clientX - bounds.left
-  const y = mouseEvent.clientY - bounds.top
-  return {
-    width: bounds.width,
-    height: bounds.height,
-    x: x,
-    y: y
-  }
+const updateProgress = (progress, currentTime, duration) => {
+  progress.style.width = `${currentTime / duration * 100}%`
 }
 
 const coordsToTime = (coords, duration) => {
@@ -63,19 +58,23 @@ export default (params) => {
     api,
     dom
   } = params
+
   const video = dom.video
 
   const ctrlEle = document.createElement('div')
   ctrlEle.classList.add(Enums.className.progressbar)
   dom.progressbar = ctrlEle
   dom.ctrlbar.appendChild(ctrlEle)
-  
+
   const ctrlBarEle = document.createElement('div')
   ctrlBarEle.classList.add(Enums.className.progressbarCtrler)
   ctrlEle.appendChild(ctrlBarEle)
-  // Initial buffer
-  updateBuffer(ctrlEle, video.buffered, video.duration)
+  // Initialize buffer
+  updateBuffer(ctrlEle, api.getBuffered(), api.getDuration())
 
+  const progress = document.createElement('div')
+  progress.classList.add(Enums.className.progressbarProgress)
+  ctrlEle.appendChild(progress)
 
   tooltip({
     selector: ctrlBarEle,
@@ -84,38 +83,37 @@ export default (params) => {
     container: dom.wrapper,
     // Only for progressbar
     progressbar: {
-      ctrlEle,
+      ctrlBarEle,
       video,
       relativeCoords,
       coordsToTime
     }
   })
 
-
   // Show the time of the current position of cursor
-  ctrlEle.addEventListener('mousemove', (event) => {
-    
+  ctrlBarEle.addEventListener('mousemove', (event) => {
+
   })
 
-  ctrlEle.addEventListener('click', (event) => {
-    // console.log(event.currentTarget) // Point to the element to which event is bound, i.e. ctrlEle here
+  ctrlBarEle.addEventListener('click', (event) => {
+    // console.log(event.currentTarget) // Point to the element to which event is bound, i.e. ctrlBarEle here
     // console.log(event.target); // Point to the element on which we click, and the click event will bubble up to the currentTarget eventually
 
-    const coords = relativeCoords(ctrlEle, event)
-    video.currentTime = coordsToTime(coords, video.duration)
+    const coords = relativeCoords(ctrlBarEle, event)
+    api.setCurrentTime(coordsToTime(coords, api.getDuration()))
   })
 
-  video.addEventListener('seeked', () => {
-
+  api.on('seeked', () => {
+    updateProgress(progress, api.getCurrentTime(), api.getDuration())
   })
 
-  video.addEventListener('timeupdate', () => {
-
+  api.on('timeupdate', () => {
+    updateProgress(progress, api.getCurrentTime(), api.getDuration())
   })
 
   // Update the buffer bar
-  video.addEventListener('progress', () => {
-    updateBuffer(ctrlEle, video.buffered, video.duration)
+  api.on('progress', () => {
+    updateBuffer(ctrlEle, api.getBuffered(), api.getDuration())
   })
 
   return ctrlEle

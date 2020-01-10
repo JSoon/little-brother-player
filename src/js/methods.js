@@ -14,21 +14,12 @@ const methods = (params) => {
     dom
   } = params
 
-  api.canPlayType = canPlayType
-
-  function canPlayType(MIME) {
-    // probably, maybe
-    if (dom.video.canPlayType(MIME)) {
-      return true
-    }
-    // empty string
-    return false
-  }
+  const video = dom.video
 
   api.seek = seek
 
   function seek(sec) {
-    dom.video.currentTime = sec
+    video.currentTime = sec
   }
 
   /**
@@ -40,7 +31,7 @@ const methods = (params) => {
   api.play = play
 
   function play() {
-    return dom.video.play()
+    return video.play()
   }
 
   /**
@@ -54,7 +45,7 @@ const methods = (params) => {
   api.load = load
 
   function load(params) {
-    dom.video.innerHTML = ''
+    video.innerHTML = ''
 
     if (Utils.typeof(params.media) === 'string') {
       const mediaSrc = params.media
@@ -77,74 +68,135 @@ const methods = (params) => {
         throw 'Invalid media type!'
       }
 
-      dom.video.appendChild(srcEle)
+      video.appendChild(srcEle)
     })
-    dom.video.appendChild(document.createTextNode(`Sorry, your browser doesn't support embedded dom.videos.`))
+    video.appendChild(document.createTextNode(`Sorry, your browser doesn't support embedded videos.`))
   }
 
   api.pause = pause
 
   function pause() {
-    dom.video.pause()
-  }
-
-  api.getDuration = getDuration
-
-  function getDuration() {
-    return dom.video.duration
-  }
-
-  api.getCurrentTime = getCurrentTime
-
-  function getCurrentTime() {
-    return dom.video.currentTime
-  }
-
-  api.isPlaying = isPlaying
-
-  function isPlaying() {
-    return !dom.video.paused && !dom.video.ended
-  }
-
-  api.isPaused = isPaused
-
-  function isPaused() {
-    return dom.video.paused
-  }
-
-  api.isEnded = isEnded
-
-  function isEnded() {
-    return dom.video.ended
-  }
-
-  api.isMuted = isMuted
-
-  function isMuted() {
-    return dom.video.ended
+    video.pause()
   }
 
   api.on = on
 
   function on(eventName, func) {
 
-    dom.video.addEventListener(eventName, () => {
+    video.addEventListener(eventName, e => {
       Utils.debug.log(`Event triggered: ${eventName}`)
 
-      func()
+      func(e)
     })
 
     if (eventName === 'encrypted') {
       Utils.debug.log(`Event triggered: ${eventName}`)
-      dom.video.onencrypted = func
+      video.onencrypted = func
     }
 
     if (eventName === 'waitingforkey') {
       Utils.debug.log(`Event triggered: ${eventName}`)
-      dom.video.onwaitingforkey = func
+      video.onwaitingforkey = func
     }
 
   }
+
+  //#region Getters
+
+  api.canPlayType = canPlayType
+
+  function canPlayType(MIME) {
+    // probably, maybe
+    if (video.canPlayType(MIME)) {
+      return true
+    }
+    // empty string
+    return false
+  }
+
+  api.getDuration = getDuration
+
+  function getDuration() {
+    return video.duration
+  }
+
+  api.getCurrentTime = getCurrentTime
+
+  function getCurrentTime() {
+    return video.currentTime
+  }
+
+  api.getVolume = getVolume
+
+  function getVolume() {
+    return video.volume
+  }
+
+  api.getBuffered = getBuffered
+
+  function getBuffered() {
+    return video.buffered
+  }
+
+  api.getVideoWidth = getVideoWidth
+
+  function getVideoWidth() {
+    return video.videoWidth
+  }
+
+  api.getVideoHeight = getVideoHeight
+
+  function getVideoHeight() {
+    return video.videoHeight
+  }
+
+  api.getCurrentSrc = getCurrentSrc
+
+  function getCurrentSrc() {
+    return video.currentSrc
+  }
+
+  api.isPlaying = isPlaying
+
+  function isPlaying() {
+    return !video.paused && !video.ended
+  }
+
+  api.isPaused = isPaused
+
+  function isPaused() {
+    return video.paused
+  }
+
+  api.isEnded = isEnded
+
+  function isEnded() {
+    return video.ended
+  }
+
+  api.isMuted = isMuted
+
+  function isMuted() {
+    return video.volume === 0 ? true : false
+  }
+
+  //#endregion
+
+  //#region Setters
+
+  api.setCurrentTime = setCurrentTime
+
+  function setCurrentTime(val) {
+    video.currentTime = val
+  }
+
+  api.setVolume = setVolume
+
+  function setVolume(val) {
+    video.volume = parseFloat(val)
+  }
+
+  //#endregion
 
   return api
 

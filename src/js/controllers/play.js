@@ -17,7 +17,7 @@ export default (params) => {
   ctrlEle.classList.add(Enums.className.play)
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
 
-  ctrlEle.onclick = (e) => {
+  ctrlEle.onclick = e => {
     if (!api.isPlaying()) {
       api.play()
     } else {

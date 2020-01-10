@@ -8,7 +8,7 @@ const toggleFullscreen = (ele, e) => {
   }
 }
 
-const fullscreenchangeHandler = (e) => {
+const fullscreenchangeHandler = e => {
   if (fscreen.fullscreenElement !== null) {
     Utils.debug.log('Entered fullscreen mode');
   } else {
@@ -42,7 +42,7 @@ export default (params) => {
 
   fscreen.addEventListener('fullscreenchange', fullscreenchangeHandler, false)
 
-  ctrlEle.addEventListener('click', (e) => {
+  ctrlEle.addEventListener('click', e => {
     toggleFullscreen(dom.wrapper, e)
   })
 

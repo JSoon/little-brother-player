@@ -5,7 +5,6 @@ const normalizeSec = (seconds) => {
   if (Utils.typeof(seconds) !== 'number') {
     throw 'Argument must be a number!'
   }
-
   return new Date(Math.floor(seconds * 1000)).toISOString().substr(11, 8)
 }
 
@@ -23,8 +22,12 @@ const updateTooltipPosition = (params) => {
   }
   // Only for updating progressbar cursor time
   else {
-    const coords = progressbar.relativeCoords(progressbar.ctrlEle, e)
-    tipEle.innerHTML = normalizeSec(progressbar.coordsToTime(coords, progressbar.video.duration))
+    const coords = progressbar.relativeCoords(progressbar.ctrlBarEle, e)
+    try {
+      tipEle.innerHTML = normalizeSec(progressbar.coordsToTime(coords, progressbar.video.duration))
+    } catch (error) {
+      Utils.debug.error(error)
+    }
   }
 
   const targetBounds = targetEle.getBoundingClientRect()
@@ -90,7 +93,7 @@ const tooltip = (params) => {
   var tipEle = null
 
   // Show tooltip
-  document.body.addEventListener('mouseenter', (e) => {
+  document.body.addEventListener('mouseenter', e => {
     if (targetEle) {
       if (!targetEle.contains(e.target)) {
         return
@@ -118,7 +121,7 @@ const tooltip = (params) => {
   }, true)
 
   // Destroy tooltip
-  document.body.addEventListener('mouseleave', (e) => {
+  document.body.addEventListener('mouseleave', e => {
     if (targetEle) {
       if (!targetEle.contains(e.target)) {
         return
@@ -133,7 +136,7 @@ const tooltip = (params) => {
   }, true)
 
   // Move tooltip
-  document.body.addEventListener('mousemove', (e) => {
+  document.body.addEventListener('mousemove', e => {
     if (targetEle) {
       if (!targetEle.contains(e.target)) {
         return

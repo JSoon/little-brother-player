@@ -18,6 +18,8 @@ const events = (params) => {
     dom
   } = params
 
+  const video = dom.video
+
   api.on('abort', () => {
 
   })
@@ -65,24 +67,17 @@ const events = (params) => {
 
   // https://html.spec.whatwg.org/multipage/media.html#event-media-loadedmetadata
   api.on('loadedmetadata', () => {
-    Utils.debug.log(`duration: ${dom.video.duration}s`)
-    Utils.debug.log(`intrinsic dimensions: ${dom.video.videoWidth} x ${dom.video.videoHeight}`)
+    Utils.debug.log(`duration: ${api.getDuration()}s`)
+    Utils.debug.log(`intrinsic dimensions: ${api.getVideoWidth()} x ${api.getVideoHeight()}`)
 
   })
 
   api.on('loadstart', () => {
-    Utils.debug.log(`media: ${dom.video.currentSrc}`)
+    Utils.debug.log(`media: ${api.getCurrentSrc()}`)
 
   })
 
   api.on('progress', () => {
-    // if (dom.video.buffered.length) {
-    //   Utils.debug.log(`buffered length: ${dom.video.buffered.length}`)
-    //   Utils.debug.log(`buffered start: ${dom.video.buffered.start(0)}`)
-    //   Utils.debug.log(`buffered end: ${dom.video.buffered.end(0)}`)
-      
-    // }
-
 
   })
 
@@ -107,11 +102,11 @@ const events = (params) => {
   })
 
   api.on('timeupdate', () => {
-    // Utils.debug.log(`current: ${dom.video.currentTime}`)
+
   })
 
   api.on('volumechange', () => {
-
+    Utils.debug.log(`volume: ${api.getVolume()}`)
   })
 
   api.on('waiting', () => {
