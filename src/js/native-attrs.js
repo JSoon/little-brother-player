@@ -8,6 +8,7 @@ const nativeAttrs = [
   'currentTime',
   'loop',
   'muted',
+  'volume',
   'playsinline',
   'poster',
   'preload',

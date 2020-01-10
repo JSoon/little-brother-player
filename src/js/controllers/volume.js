@@ -44,8 +44,7 @@ export default (params) => {
     dom
   } = params
 
-  const video = dom.video
-
+  volumeBeforeMuted = api.getVolume()
 
   const ctrlEleWrapper = document.createElement('div')
   dom.volume = ctrlEleWrapper
