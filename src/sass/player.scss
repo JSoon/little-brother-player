@@ -151,13 +151,14 @@
         position: relative;
         width: 3rem;
         height: 1rem;
+        background-color: #FFC107;
 
         .little-brother-player-ctrl-volume-progress {
           z-index: 2;
           position: absolute;
           width: 0;
           height: inherit;
-          background-color: #f44336;
+          background-color: #ff5722;
         }
 
         .little-brother-player-ctrl-volume-ctrler {

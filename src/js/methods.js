@@ -117,13 +117,13 @@ const methods = (params) => {
   api.getDuration = getDuration
 
   function getDuration() {
-    return video.duration
+    return Math.round(video.duration)
   }
 
   api.getCurrentTime = getCurrentTime
 
   function getCurrentTime() {
-    return video.currentTime
+    return Math.round(video.currentTime)
   }
 
   api.getVolume = getVolume

@@ -13,6 +13,7 @@ export default (params) => {
 
   const ctrlEle = document.createElement('div')
   dom.controllername = ctrlEle
+  dom.ctrls.left.appendChild(ctrlEle)
   
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].controllername
   ctrlEle.classList.add(Enums.className.controllername)

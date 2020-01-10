@@ -76,20 +76,6 @@ export default (params) => {
   progress.classList.add(Enums.className.progressbarProgress)
   ctrlEle.appendChild(progress)
 
-  tooltip({
-    selector: ctrlBarEle,
-    title: '呵呵',
-    attached: true,
-    container: dom.wrapper,
-    // Only for progressbar
-    progressbar: {
-      ctrlBarEle,
-      video,
-      relativeCoords,
-      coordsToTime
-    }
-  })
-
   // Show the time of the current position of cursor
   ctrlBarEle.addEventListener('mousemove', (event) => {
 
@@ -114,6 +100,25 @@ export default (params) => {
   // Update the buffer bar
   api.on('progress', () => {
     updateBuffer(ctrlEle, api.getBuffered(), api.getDuration())
+  })
+
+  api.on('loadedmetadata', e => {
+
+    // Make sure duration is not NaN
+    tooltip({
+      selector: ctrlBarEle,
+      title: '呵呵',
+      attached: true,
+      container: dom.wrapper,
+      // Only for progressbar
+      progressbar: {
+        ctrlBarEle,
+        video,
+        relativeCoords,
+        coordsToTime
+      }
+    })
+
   })
 
   return ctrlEle

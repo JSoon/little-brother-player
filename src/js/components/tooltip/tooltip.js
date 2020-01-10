@@ -1,13 +1,5 @@
 import './tooltip.scss'
 
-// Convert seconds to HH:MM:SS format
-const normalizeSec = (seconds) => {
-  if (Utils.typeof(seconds) !== 'number') {
-    throw 'Argument must be a number!'
-  }
-  return new Date(Math.floor(seconds * 1000)).toISOString().substr(11, 8)
-}
-
 const updateTooltipPosition = (params) => {
   const {
     targetEle,
@@ -17,17 +9,17 @@ const updateTooltipPosition = (params) => {
     progressbar
   } = params
 
+  if (!tipEle) {
+    return
+  }
+
   if (!progressbar) {
     tipEle.innerHTML = title || targetEle.title || 'Tooltip'
   }
   // Only for updating progressbar cursor time
   else {
     const coords = progressbar.relativeCoords(progressbar.ctrlBarEle, e)
-    try {
-      tipEle.innerHTML = normalizeSec(progressbar.coordsToTime(coords, progressbar.video.duration))
-    } catch (error) {
-      Utils.debug.error(error)
-    }
+    tipEle.innerHTML = Utils.secToHHMMSS(progressbar.coordsToTime(coords, progressbar.video.duration))
   }
 
   const targetBounds = targetEle.getBoundingClientRect()
@@ -110,13 +102,11 @@ const tooltip = (params) => {
 
     containerEle.appendChild(tipEle)
 
-    if (!attached) {
-      updateTooltipPosition(Object.assign(params, {
-        targetEle,
-        tipEle,
-        e
-      }))
-    }
+    updateTooltipPosition(Object.assign(params, {
+      targetEle,
+      tipEle,
+      e
+    }))
 
   }, true)
 
@@ -148,13 +138,11 @@ const tooltip = (params) => {
       targetEle = e.target.closet(selector)
     }
 
-    if (attached) {
-      updateTooltipPosition(Object.assign(params, {
-        targetEle,
-        tipEle,
-        e
-      }))
-    }
+    updateTooltipPosition(Object.assign(params, {
+      targetEle,
+      tipEle,
+      e
+    }))
 
   }, true)
 

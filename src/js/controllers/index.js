@@ -3,6 +3,7 @@ import progressbar from './progressbar'
 import fullscreen from './fullscreen'
 import pip from './pip'
 import volume from './volume'
+import playtime from './playtime'
 
 /**
  * @description Controller bar
@@ -36,6 +37,7 @@ export default (params) => {
   progressbar(params)
   playBtn(params)
   volume(params)
+  playtime(params)
   pip(params)
   fullscreen(params)
 

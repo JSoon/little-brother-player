@@ -26,6 +26,7 @@ const className = {
   volumeIcon: `${prefix}-ctrl-volume-icon`,
   volumeProgress: `${prefix}-ctrl-volume-progress`,
   volumeCtrler: `${prefix}-ctrl-volume-ctrler`,
+  playtime: `${prefix}-ctrl-playtime`,
 
   // Components
   tooltip: `${prefix}-com-tooltip`
