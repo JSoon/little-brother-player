@@ -1,6 +1,6 @@
 import controllerBar from '~/js/controllers/index'
 import debugPanel from './debug'
-import rightClickMenu from './right-click-menu'
+import contextMenu from './contextMenu'
 
 /**
  * @description Player UI
@@ -18,7 +18,7 @@ export default (params) => {
   dom.ui = UIEle
 
   debugPanel(params)
-  rightClickMenu(params)
+  contextMenu(params)
 
   controllerBar(params)
 

@@ -8,7 +8,7 @@ const className = {
   // UI
   ui: `${prefix}-ui`,
   debugPanel: `${prefix}-ui-debug-panel`,
-  rightClickMenu: `${prefix}-ui-right-click-menu`,
+  contextMenu: `${prefix}-ui-context-menu`,
 
   // Controllers
   ctrlBar: `${prefix}-ctrl-bar`,

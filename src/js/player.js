@@ -1,4 +1,4 @@
-import '~/js/version'
+import '~/js/package'
 import dom from '~/js/dom'
 
 /**

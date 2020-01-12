@@ -1,10 +1,15 @@
 @import "./variables";
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+}
+
 .little-brother-player-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: $wrapper-bg;
+  background-color: $bg-wrapper;
+  font-size: $font-sm;
 
   * {
     box-sizing: border-box;
@@ -60,6 +65,27 @@
         word-break: break-all;
       }
     }
+
+    // Right click menu
+    .little-brother-player-ui-context-menu {
+      z-index: map-get($map: $layer, $key: player-context-menu);
+      position: absolute;
+      display: none;
+      padding: .3rem 0;
+      overflow: hidden;
+      background-color: $bg-context-menu;
+      font-size: $font-xs;
+      color: white;
+      white-space: nowrap;
+
+      &.show {
+        display: block;
+      }
+
+      > * {
+        padding: .2rem .6rem;
+      }
+    }
   }
 
   // Bottom controller bar
@@ -70,7 +96,8 @@
     left: 0;
     right: 0;
     height: 2rem;
-    background-color: $ctrl-bg;
+    line-height: 2rem;
+    background-color: $bg-ctrl;
     color: #fff;
     cursor: pointer;
 
@@ -143,7 +170,7 @@
     // Volume
     .little-brother-player-ctrl-volume-wrapper {
       $volume-bar-width: 3rem;
-      $volume-bar-height: 1rem;
+      $volume-bar-height: $font-sm;
 
       display: flex;
       align-items: center;

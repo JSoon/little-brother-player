@@ -1,10 +1,20 @@
-$wrapper-bg: rgba(0, 0, 0, 0);
-$ctrl-bg: rgba(0, 0, 0, 0);
+// background
+$bg-wrapper: rgba(0, 0, 0, 0);
+$bg-ctrl: rgba(0, 0, 0, 0);
+$bg-context-menu: rgba(0, 0, 0, 0.5);
 
 // z-index
 $layer: ("player": 1,
 
   "player-ui": 2,
   "player-ctrl": 20,
+  "player-context-menu": 21,
 
   "player-tooltip": 1000);
+
+// font
+$font-xl: 1.25rem; // 20
+$font-lg: 1.125rem; // 18
+$font-md: 1rem; // Normally 16px
+$font-sm: .875rem; // 14
+$font-xs: .75rem; // 12
