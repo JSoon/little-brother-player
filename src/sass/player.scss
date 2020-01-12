@@ -40,8 +40,8 @@
     // Debug information panel
     &:hover {
       .little-brother-player-ui-debug-panel {
-        opacity: .4;
-        background-color: transparent;
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        opacity: 1;
       }
     }
 
@@ -49,8 +49,10 @@
       width: 100%;
       height: 100%;
       padding: .3rem .5rem;
+      overflow: hidden;
+      border-radius: inherit;
       color: white;
-      background-color: rgba($color: #000000, $alpha: 0.5);
+      opacity: .4;
       transition: all .4s;
 
       p {
@@ -86,7 +88,6 @@
 
     .little-brother-player-ctrl-bar-left,
     .little-brother-player-ctrl-bar-right {
-      flex: 1;
       display: flex;
 
       >* {
@@ -94,11 +95,10 @@
       }
     }
 
-    .little-brother-player-ctrl-bar-left {
-      justify-content: flex-start;
-    }
+    .little-brother-player-ctrl-bar-left {}
 
     .little-brother-player-ctrl-bar-right {
+      flex: 1;
       justify-content: flex-end;
     }
 
@@ -142,16 +142,29 @@
 
     // Volume
     .little-brother-player-ctrl-volume-wrapper {
+      $volume-bar-width: 3rem;
+      $volume-bar-height: 1rem;
+
       display: flex;
       align-items: center;
 
       .little-brother-player-ctrl-volume-icon {}
 
       .little-brother-player-ctrl-volume {
-        position: relative;
-        width: 3rem;
-        height: 1rem;
-        background-color: #FFC107;
+        width: 0;
+        overflow: hidden;
+        transition: width .2s;
+
+        &.show {
+          width: $volume-bar-width;
+        }
+
+        .little-brother-player-ctrl-volume-bar {
+          position: relative;
+          width: $volume-bar-width;
+          height: $volume-bar-height;
+          background-color: #FFC107;
+        }
 
         .little-brother-player-ctrl-volume-progress {
           z-index: 2;

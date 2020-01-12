@@ -18,6 +18,7 @@ export default (params) => {
 
   const debugPanel = document.createElement('div')
   dom.debug = debugPanel
+  dom.ui.appendChild(debugPanel)
 
   debugPanel.classList.add(Enums.className.debugPanel)
 

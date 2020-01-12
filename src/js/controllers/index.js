@@ -33,6 +33,7 @@ export default (params) => {
   controllers.appendChild(controllersRight)
 
   controllerBar.appendChild(controllers)
+  dom.ui.appendChild(controllerBar)
 
   progressbar(params)
   playBtn(params)

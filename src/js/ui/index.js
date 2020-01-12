@@ -1,5 +1,6 @@
-import debugPanel from '~/js/ui/debug'
 import controllerBar from '~/js/controllers/index'
+import debugPanel from './debug'
+import rightClickMenu from './right-click-menu'
 
 /**
  * @description Player UI
@@ -14,9 +15,12 @@ export default (params) => {
 
   const UIEle = document.createElement('div')
   UIEle.classList.add(Enums.className.ui)
-  debugPanel(params) && UIEle.appendChild(debugPanel(params))
-  UIEle.appendChild(controllerBar(params))
   dom.ui = UIEle
+
+  debugPanel(params)
+  rightClickMenu(params)
+
+  controllerBar(params)
 
   return UIEle
 }

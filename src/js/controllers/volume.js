@@ -3,6 +3,8 @@ const {
 } = Utils
 
 let volumeBeforeMuted = 1
+const animateClass = 'show'
+let animateRemovable = true
 
 const updateVolume = (volumeProgress, coords, api) => {
   let {
@@ -32,7 +34,7 @@ const updateVolume = (volumeProgress, coords, api) => {
 }
 
 /**
- * @description volume
+ * @description Volume
  * 
  * @param {object}  params
  */
@@ -60,13 +62,17 @@ export default (params) => {
   ctrlEle.classList.add(Enums.className.volume)
   ctrlEleWrapper.appendChild(ctrlEle)
 
+  const volumeBar = document.createElement('div')
+  volumeBar.classList.add(Enums.className.volumeBar)
+  ctrlEle.appendChild(volumeBar)
+
   const volumeCtrler = document.createElement('div')
   volumeCtrler.classList.add(Enums.className.volumeCtrler)
-  ctrlEle.appendChild(volumeCtrler)
+  volumeBar.appendChild(volumeCtrler)
 
   const volumeProgress = document.createElement('div')
   volumeProgress.classList.add(Enums.className.volumeProgress)
-  ctrlEle.appendChild(volumeProgress)
+  volumeBar.appendChild(volumeProgress)
   // Initialize volume
   volumeProgress.style.width = `${api.getVolume() * 100}%`
 
@@ -78,15 +84,28 @@ export default (params) => {
     updateVolume(volumeProgress, coords, api)
   }
 
+  dom.ctrls.left.addEventListener('mouseenter', e => {
+    ctrlEle.classList.add(animateClass)
+  })
+
+  dom.ctrls.left.addEventListener('mouseleave', e => {
+    animateRemovable && ctrlEle.classList.remove(animateClass)
+  })
+
   volumeCtrler.addEventListener('mousedown', e => {
     const coords = relativeCoords(volumeCtrler, e)
     updateVolume(volumeProgress, coords, api)
-
     document.body.addEventListener('mousemove', mousemoveHandler)
+    animateRemovable = false
   })
 
   document.body.addEventListener('mouseup', e => {
     document.body.removeEventListener('mousemove', mousemoveHandler)
+
+    if (!dom.ctrls.left.contains(e.target)) {
+      ctrlEle.classList.remove(animateClass)
+    }
+    animateRemovable = true
   })
 
   volumeIcon.addEventListener('click', e => {
@@ -106,7 +125,10 @@ export default (params) => {
     if (api.isMuted()) {
       volumeIcon.innerHTML = 'Muted'
     } else {
-      volumeIcon.innerHTML = Enums.i18n[settings.i18n].volume
+      // Only change volume text one time after resuming from muted
+      if (volumeIcon.innerHTML !== Enums.i18n[settings.i18n].volume) {
+        volumeIcon.innerHTML = Enums.i18n[settings.i18n].volume
+      }
     }
   })
 

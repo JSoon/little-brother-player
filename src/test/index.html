@@ -20,10 +20,17 @@
       position: relative;
       width: 640px;
       height: 360px;
-      overflow: hidden;
       margin: 0 2rem;
+    }
+
+    .little-brother-player-video-wrapper {
+      overflow: hidden;
       border-radius: .2rem;
       box-shadow: 0 2rem 5rem rgba(0, 0, 0, .6);
+    }
+
+    .little-brother-player-ui {
+      border-radius: .2rem;
     }
   </style>
 </head>
@@ -51,7 +58,7 @@
       id: 'J_LittleBrotherPlayer',
       media: media,
       debug: true,
-      autoplay: true,
+      autoplay: false,
       volume: 0.5,
       // muted: true
     })

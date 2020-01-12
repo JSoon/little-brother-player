@@ -8,6 +8,7 @@ const className = {
   // UI
   ui: `${prefix}-ui`,
   debugPanel: `${prefix}-ui-debug-panel`,
+  rightClickMenu: `${prefix}-ui-right-click-menu`,
 
   // Controllers
   ctrlBar: `${prefix}-ctrl-bar`,
@@ -24,6 +25,7 @@ const className = {
   volumeWrapper: `${prefix}-ctrl-volume-wrapper`,
   volume: `${prefix}-ctrl-volume`,
   volumeIcon: `${prefix}-ctrl-volume-icon`,
+  volumeBar: `${prefix}-ctrl-volume-bar`,
   volumeProgress: `${prefix}-ctrl-volume-progress`,
   volumeCtrler: `${prefix}-ctrl-volume-ctrler`,
   playtime: `${prefix}-ctrl-playtime`,
