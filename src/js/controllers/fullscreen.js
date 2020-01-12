@@ -1,21 +1,5 @@
 import fscreen from 'fscreen'
 
-const toggleFullscreen = (ele, e) => {
-  if (fscreen.fullscreenElement !== null) {
-    fscreen.exitFullscreen()
-  } else {
-    fscreen.requestFullscreen(ele)
-  }
-}
-
-const fullscreenchangeHandler = e => {
-  if (fscreen.fullscreenElement !== null) {
-    Utils.debug.log('Entered fullscreen mode');
-  } else {
-    Utils.debug.log('Exited fullscreen mode');
-  }
-}
-
 /**
  * @description Fullscreen
  * 
@@ -40,10 +24,8 @@ export default (params) => {
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].fullscreen
   ctrlEle.classList.add(Enums.className.fullscreen)
 
-  fscreen.addEventListener('fullscreenchange', fullscreenchangeHandler, false)
-
   ctrlEle.addEventListener('click', e => {
-    toggleFullscreen(dom.wrapper, e)
+    api.toggleFullscreen(dom.wrapper, e)
   })
 
   return ctrlEle

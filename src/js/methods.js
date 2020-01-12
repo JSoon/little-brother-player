@@ -1,3 +1,5 @@
+import fscreen from 'fscreen'
+
 /**
  * @description Player methods
  * @param {object}  params
@@ -15,6 +17,8 @@ const methods = (params) => {
   } = params
 
   const video = dom.video
+
+  let volumeBeforeMuted = settings.volume || 1
 
   api.seek = seek
 
@@ -79,25 +83,129 @@ const methods = (params) => {
     video.pause()
   }
 
+  api.togglePlay = togglePlay
+
+  function togglePlay() {
+    if (!isPlaying()) {
+      play()
+    } else {
+      pause()
+    }
+  }
+
+  api.toggleFullscreen = toggleFullscreen
+
+  /**
+   * @description Fullscreen
+   * 
+   * @param {HTMLElement} ele The html element that needs to enter fullscreen state
+   * @param {object}      e   Event object 
+   */
+  function toggleFullscreen(ele, e) {
+    if (!fscreen.fullscreenEnabled) {
+      throw 'Fullscreen is not support!'
+    }
+
+    if (fscreen.fullscreenElement !== null) {
+      fscreen.exitFullscreen()
+    } else {
+      fscreen.requestFullscreen(ele)
+    }
+  }
+
+  const fullscreenchangeHandler = e => {
+    if (fscreen.fullscreenElement !== null) {
+      Utils.debug.log('Event triggered: Entered fullscreen mode');
+    } else {
+      Utils.debug.log('Event triggered: Exited fullscreen mode');
+    }
+  }
+
+  api.toggleMute = toggleMute
+
+  function toggleMute() {
+    if (!isMuted()) {
+      setVolume(0)
+    } else {
+      if (volumeBeforeMuted !== 0) {
+        setVolume(volumeBeforeMuted)
+      } else {
+        setVolume(1)
+      }
+    }
+  }
+
+  api.togglePiP = togglePiP
+
+  async function togglePiP() {
+    if (
+      // Chrome
+      !document.pictureInPictureEnabled &&
+      // Safari
+      !(video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function')
+      // Firefox
+    ) {
+      return
+    }
+
+    try {
+
+      //#region Chrome
+      if (document.pictureInPictureEnabled) {
+
+        var pip = video === document.pictureInPictureElement
+
+        if (!pip) {
+          // 进入PiP
+          await video.requestPictureInPicture()
+        } else {
+          // 退出PiP
+          await document.exitPictureInPicture()
+        }
+      }
+      //#endregion
+
+      //#region Safari
+      if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function') {
+        video.webkitSetPresentationMode(video.webkitPresentationMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture')
+      }
+      //#endregion
+
+    } catch (error) {
+      Utils.debug.error(error)
+    } finally {
+      // 
+    }
+  }
+
   api.on = on
 
   function on(eventName, func) {
+
+    if (eventName === 'enterfullscreen' || eventName === 'exitfullscreen') {
+      fscreen.addEventListener('fullscreenchange', fullscreenchangeHandler, false)
+      return
+    }
+
+    if (eventName === 'encrypted') {
+      Utils.debug.log(`Event triggered: ${eventName}`)
+
+      video.onencrypted = func
+      return
+    }
+
+    if (eventName === 'waitingforkey') {
+      Utils.debug.log(`Event triggered: ${eventName}`)
+
+      video.onwaitingforkey = func
+      return
+    }
 
     video.addEventListener(eventName, e => {
       Utils.debug.log(`Event triggered: ${eventName}`)
 
       func(e)
     })
-
-    if (eventName === 'encrypted') {
-      Utils.debug.log(`Event triggered: ${eventName}`)
-      video.onencrypted = func
-    }
-
-    if (eventName === 'waitingforkey') {
-      Utils.debug.log(`Event triggered: ${eventName}`)
-      video.onwaitingforkey = func
-    }
 
   }
 
@@ -193,7 +301,8 @@ const methods = (params) => {
   api.setVolume = setVolume
 
   function setVolume(val) {
-    video.volume = parseFloat(val)
+    volumeBeforeMuted = video.volume
+    video.volume = val
   }
 
   //#endregion

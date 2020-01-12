@@ -4,6 +4,7 @@ import fullscreen from './fullscreen'
 import pip from './pip'
 import volume from './volume'
 import playtime from './playtime'
+import shortcuts from './shortcuts'
 
 /**
  * @description Controller bar
@@ -41,6 +42,8 @@ export default (params) => {
   playtime(params)
   pip(params)
   fullscreen(params)
+
+  shortcuts(params)
 
   return controllerBar
 }

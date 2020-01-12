@@ -93,6 +93,7 @@ export default (params) => {
 
   api.on('seeked', () => {
     updateProgress(progress, api.getCurrentTime(), api.getDuration())
+    api.play()
   })
 
   api.on('timeupdate', () => {

@@ -31,36 +31,7 @@ export default (params) => {
   ctrlEle.classList.add(Enums.className.pip)
 
   ctrlEle.addEventListener('click', async function () {
-
-    try {
-
-      //#region Chrome
-      if (document.pictureInPictureEnabled) {
-
-        var pip = video === document.pictureInPictureElement
-
-        if (!pip) {
-          // 进入PiP
-          await video.requestPictureInPicture()
-        } else {
-          // 退出PiP
-          await document.exitPictureInPicture()
-        }
-      }
-      //#endregion
-
-      //#region Safari
-      if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function') {
-        video.webkitSetPresentationMode(video.webkitPresentationMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture')
-      }
-      //#endregion
-
-    } catch (error) {
-      Utils.debug.error(error)
-    } finally {
-      // 
-    }
-
+    api.togglePiP()
   })
 
   return ctrlEle

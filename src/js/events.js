@@ -121,6 +121,15 @@ const events = (params) => {
 
   })
 
+  api.on('enterfullscreen', () => {
+
+  })
+
+  api.on('exitfullscreen', () => {
+
+  })
+
+
   return params
 
 }

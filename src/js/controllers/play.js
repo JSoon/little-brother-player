@@ -18,11 +18,7 @@ export default (params) => {
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
 
   ctrlEle.onclick = e => {
-    if (!api.isPlaying()) {
-      api.play()
-    } else {
-      api.pause()
-    }
+    api.togglePlay()
   }
 
   api.on('pause', () => {

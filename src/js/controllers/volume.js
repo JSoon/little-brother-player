@@ -2,24 +2,16 @@ const {
   relativeCoords
 } = Utils
 
-let volumeBeforeMuted = 1
 const animateClass = 'show'
 let animateRemovable = true
 
-const updateVolume = (volumeProgress, coords, api) => {
+const updateVolume = (coords, api) => {
   let {
     width,
     height,
     x,
-    y,
-    volume
+    y
   } = coords
-
-  // Update from volume
-  if (Utils.typeof(volume) === 'number') {
-    volumeProgress.style.width = `${volume * width}px`
-    return
-  }
 
   // Update from cursor position
   if (x < 0) {
@@ -28,9 +20,12 @@ const updateVolume = (volumeProgress, coords, api) => {
     x = width
   }
 
-  volumeProgress.style.width = `${x / width * 100}%`
+  // volumeProgress.style.width = `${x / width * 100}%`
   api.setVolume(`${x / width}`)
-  volumeBeforeMuted = x / width
+}
+
+const updateVolumeBar = (volume, volumeProgress, volumeCtrler) => {
+  volumeProgress.style.width = `${volume * volumeCtrler.clientWidth}px`
 }
 
 /**
@@ -45,8 +40,6 @@ export default (params) => {
     api,
     dom
   } = params
-
-  volumeBeforeMuted = api.getVolume()
 
   const ctrlEleWrapper = document.createElement('div')
   dom.volume = ctrlEleWrapper
@@ -81,7 +74,7 @@ export default (params) => {
     e.preventDefault() // Disable text selection and other default actions
 
     const coords = relativeCoords(volumeCtrler, e)
-    updateVolume(volumeProgress, coords, api)
+    updateVolume(coords, api)
   }
 
   dom.ctrls.left.addEventListener('mouseenter', e => {
@@ -94,7 +87,7 @@ export default (params) => {
 
   volumeCtrler.addEventListener('mousedown', e => {
     const coords = relativeCoords(volumeCtrler, e)
-    updateVolume(volumeProgress, coords, api)
+    updateVolume(coords, api)
     document.body.addEventListener('mousemove', mousemoveHandler)
     animateRemovable = false
   })
@@ -109,16 +102,7 @@ export default (params) => {
   })
 
   volumeIcon.addEventListener('click', e => {
-    let volume = volumeBeforeMuted
-    if (!api.isMuted()) {
-      volume = 0
-    }
-    api.setVolume(volume)
-
-    updateVolume(volumeProgress, {
-      volume: volume,
-      width: volumeCtrler.clientWidth
-    }, api)
+    api.toggleMute()
   })
 
   api.on('volumechange', e => {
@@ -130,6 +114,8 @@ export default (params) => {
         volumeIcon.innerHTML = Enums.i18n[settings.i18n].volume
       }
     }
+
+    updateVolumeBar(api.getVolume(), volumeProgress, volumeCtrler)
   })
 
   return ctrlEle

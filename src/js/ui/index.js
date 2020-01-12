@@ -22,5 +22,19 @@ export default (params) => {
 
   controllerBar(params)
 
+  //#region UI control
+
+  // Toggle play
+  UIEle.addEventListener('click', e => {
+    if (
+      !dom.ctrls.contains(e.target) &&
+      !dom.contextMenu.contains(e.target)
+    ) {
+      api.togglePlay()
+    }
+  })
+
+  //#endregion
+
   return UIEle
 }
