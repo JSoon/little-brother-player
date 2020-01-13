@@ -10,6 +10,7 @@
 
 ## Features in the near future
 
+- [x] Playing mp3
 - [x] Playing mp4
 - [ ] Playing m3u
 - [x] Displaying poster
