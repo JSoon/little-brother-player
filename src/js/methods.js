@@ -55,7 +55,25 @@ const methods = (params) => {
   api.load = load
 
   function load(params) {
-    video.innerHTML = ''
+    params = Object.assign(settings, params)
+
+    destroy()
+
+    //#region Deal with image
+    if (Utils.typeof(params.media) === 'string') {
+      const extName = Utils.fileExt(params.media)
+      // Get image extension
+      if (extName && Enums.MIME.image[extName]) {
+        // If this is an image uri, then render and return
+        dom.videoWrapper.style.backgroundImage = `url(${params.media})`
+        dom.wrapper.classList.add('image')
+        return
+      }
+    }
+    //#endregion
+
+    //#region Deal with video
+    let allCantPlay = true // If all sources are unavalaible, throw error
 
     if (Utils.typeof(params.media) === 'string') {
       const mediaSrc = params.media
@@ -69,24 +87,48 @@ const methods = (params) => {
       }]
     }
 
-    media.forEach(medium => {
+    params.media.forEach(medium => {
       const srcEle = document.createElement('source')
       srcEle.src = medium.src
-      srcEle.type = Enums.MIME[medium.type]
+      srcEle.type = Enums.MIME.video[medium.type]
 
-      if (!canPlayType(srcEle.type)) {
-        throw 'Invalid media type!'
+      if (canPlayType(srcEle.type)) {
+        allCantPlay = false
       }
 
       video.appendChild(srcEle)
     })
     video.appendChild(document.createTextNode(`Sorry, your browser doesn't support embedded videos.`))
+    if (allCantPlay) {
+      throw 'Invalid media type!'
+    }
+    video.load()
+    dom.wrapper.classList.remove('image')
+    //#endregion
   }
 
   api.pause = pause
 
   function pause() {
     video.pause()
+  }
+
+  api.stop = stop
+
+  function stop() {
+    pause()
+    setCurrentTime(0)
+  }
+
+  api.destroy = destroy
+
+  function destroy() {
+    video.innerHTML = ''
+    stop()
+    // If has last src, then load it in case the last one is still playing
+    if (getCurrentSrc()) {
+      video.load()
+    }
   }
 
   api.togglePlay = togglePlay
@@ -300,6 +342,13 @@ const methods = (params) => {
 
   function isMuted() {
     return video.volume === 0 ? true : false
+  }
+
+  api.getSrcType = getSrcType
+
+  function getSrcType() {
+    const src = getCurrentSrc()
+    return Utils.fileExt(src)
   }
 
   //#endregion

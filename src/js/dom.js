@@ -37,6 +37,7 @@ export default (params) => {
   videoWrapper.classList.add(Enums.className.videoWrapper)
   videoWrapper.appendChild(videoEle)
   params.videoEle = videoEle
+  dom.videoWrapper = videoWrapper
   dom.video = videoEle
   // Set video native attributes
   Object.keys(settings).forEach(key => {

@@ -6,7 +6,7 @@ import _typeof from './typeof'
  */
 
 export default (seconds) => {
-  if (_typeof(seconds) !== 'number') {
+  if (isNaN(seconds) || _typeof(seconds) !== 'number') {
     throw 'Argument must be a number!'
   }
   return new Date(Math.floor(seconds * 1000)).toISOString().substr(11, 8).replace(/^0{2}\:/, '')

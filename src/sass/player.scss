@@ -20,8 +20,18 @@ body {
     padding-top: percentage($number: 9/16);
   }
 
+  &.image {
+    .little-brother-player-video,
+    .little-brother-player-ui {
+      display: none;
+    }
+  }
+
   .little-brother-player-video-wrapper {
     z-index: map-get($map: $layer, $key: player);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
     background-color: $bg-video-wrapper;
   }
 
@@ -83,7 +93,7 @@ body {
         display: block;
       }
 
-      > * {
+      >* {
         padding: .2rem .6rem;
       }
     }

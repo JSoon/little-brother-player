@@ -33,6 +33,7 @@ export default (params) => {
 
     let info = `
       <p>uri: ${api.getCurrentSrc()}</p>
+      <p>type: ${api.getSrcType()}</p>
       <p>currentTime: ${api.getCurrentTime()}s</p>
       <p>duration: ${api.getDuration()}s</p>
       <p>volume: ${api.getVolume()}</p>
