@@ -12,7 +12,7 @@
 
 - [x] Playing mp4
 - [ ] Playing m3u
-- [ ] Displaying poster
+- [x] Displaying poster
 - [ ] Advertisement
 - [ ] Statistics
 - [ ] Live comments (AKA 弹幕)
