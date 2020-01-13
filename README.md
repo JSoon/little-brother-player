@@ -8,7 +8,7 @@
 
 > Little brother player, which is in progress, is a video player based on HTML5 and coded with ES2015.
 
-## Features in the nearly future
+## Features in the near future
 
 - [x] Playing mp4
 - [ ] Playing m3u
