@@ -30,8 +30,22 @@ export default (params) => {
   ctrlEle.innerHTML = Enums.i18n[settings.i18n].pip
   ctrlEle.classList.add(Enums.className.pip)
 
-  ctrlEle.addEventListener('click', async function () {
+  ctrlEle.addEventListener('click', async function (e) {
     api.togglePiP()
+  })
+
+  const tooltip = Coms.tooltip({
+    selector: ctrlEle,
+    title: Enums.i18n[settings.i18n].pipEnterTitle,
+    container: dom.wrapper
+  })
+
+  api.on('enterpip', _ => {
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].pipExitTitle)
+  })
+
+  api.on('exitpip', _ => {
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].pipEnterTitle)
   })
 
   return ctrlEle

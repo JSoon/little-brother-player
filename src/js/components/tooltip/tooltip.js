@@ -1,11 +1,13 @@
 import './tooltip.scss'
 
 const updateTooltipPosition = (params) => {
-  const {
+  let {
+    containerEle,
     targetEle,
     tipEle,
     title,
     e,
+    attached,
     progressbar
   } = params
 
@@ -22,10 +24,15 @@ const updateTooltipPosition = (params) => {
     tipEle.innerHTML = Utils.secToHHMMSS(progressbar.coordsToTime(coords, progressbar.video.duration))
   }
 
+  const containerBounds = containerEle.getBoundingClientRect()
   const targetBounds = targetEle.getBoundingClientRect()
-  const tipEleBounds = tipEle.getBoundingClientRect()
-  const tipEleTop = e.clientY - tipEle.clientHeight - (e.clientY - targetBounds.top)
-  const tipEleLeft = e.clientX - tipEle.clientWidth / 2
+  let tipEleTop = targetBounds.top - tipEle.clientHeight
+  let tipEleLeft = targetBounds.left + (targetEle.clientWidth - tipEle.clientWidth) / 2
+
+  if (attached) {
+    tipEleTop = e.clientY - tipEle.clientHeight - (e.clientY - targetBounds.top)
+    tipEleLeft = e.clientX - tipEle.clientWidth / 2
+  }
 
   if (tipEleTop >= tipEle.clientHeight) {
     tipEle.style.top = tipEleTop + 'px'
@@ -33,19 +40,18 @@ const updateTooltipPosition = (params) => {
     tipEle.style.top = 0 + 'px'
   }
 
-  if (tipEleLeft >= targetBounds.left) {
-    if (tipEleLeft <= targetBounds.right - tipEle.clientWidth) {
+  if (tipEleLeft + tipEle.clientWidth <= containerBounds.right) {
+    if (tipEleLeft >= containerBounds.left) {
       tipEle.style.left = tipEleLeft + 'px'
-    } else {
-      tipEle.style.left = targetBounds.right - tipEle.clientWidth + 'px'
     }
   } else {
-    tipEle.style.left = targetBounds.left + 'px'
+    tipEle.style.left = containerBounds.right - tipEle.clientWidth + 'px'
   }
 
   // Adjust styles
   tipEle.style.top = parseInt(tipEle.style.top) - 5 + 'px'
 
+  tipEle.classList.add('show')
 }
 
 /**
@@ -59,7 +65,7 @@ const updateTooltipPosition = (params) => {
  * @param {object}          container         Relative boundary element of tooltip, default to document.body
  */
 const tooltip = (params) => {
-  const {
+  let {
     selector,
     title,
     progressbar,
@@ -84,8 +90,8 @@ const tooltip = (params) => {
 
   var tipEle = null
 
-  // Show tooltip
-  document.body.addEventListener('mouseenter', e => {
+  const mouseoverHandler = e => {
+
     if (targetEle) {
       if (!targetEle.contains(e.target)) {
         return
@@ -103,30 +109,17 @@ const tooltip = (params) => {
     containerEle.appendChild(tipEle)
 
     updateTooltipPosition(Object.assign(params, {
+      containerEle,
       targetEle,
       tipEle,
+      title,
       e
     }))
 
-  }, true)
+  }
 
-  // Destroy tooltip
-  document.body.addEventListener('mouseleave', e => {
-    if (targetEle) {
-      if (!targetEle.contains(e.target)) {
-        return
-      }
-    } else {
-      if (!e.target.closet(selector)) {
-        return
-      }
-    }
+  const mousemoveHandler = e => {
 
-    tipEle && tipEle.remove()
-  }, true)
-
-  // Move tooltip
-  document.body.addEventListener('mousemove', e => {
     if (targetEle) {
       if (!targetEle.contains(e.target)) {
         return
@@ -138,13 +131,61 @@ const tooltip = (params) => {
       targetEle = e.target.closet(selector)
     }
 
+    if (attached) {
+      updateTooltipPosition(Object.assign(params, {
+        containerEle,
+        targetEle,
+        tipEle,
+        title,
+        e
+      }))
+    }
+
+  }
+  const mouseoutHandler = e => {
+
+    if (targetEle) {
+      if (!targetEle.contains(e.target)) {
+        return
+      }
+    } else {
+      if (!e.target.closet(selector)) {
+        return
+      }
+    }
+
+    tipEle && tipEle.remove()
+
+    // document.body.removeEventListener('mouseover', mouseoverHandler)
+    // document.body.removeEventListener('mousemove', mousemoveHandler)
+    // document.body.removeEventListener('mouseout', mouseoutHandler)
+
+  }
+
+  // Show tooltip
+  document.body.addEventListener('mouseover', mouseoverHandler)
+
+  // Move tooltip
+  document.body.addEventListener('mousemove', mousemoveHandler)
+
+  // Destroy tooltip
+  document.body.addEventListener('mouseout', mouseoutHandler)
+
+
+  // Update tooltip title
+  const updateTooltipTitle = (newTitle) => {
+    title = newTitle
     updateTooltipPosition(Object.assign(params, {
+      containerEle,
       targetEle,
       tipEle,
-      e
+      title
     }))
+  }
 
-  }, true)
+  return {
+    updateTooltipTitle
+  }
 
 }
 

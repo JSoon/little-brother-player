@@ -129,6 +129,14 @@ const events = (params) => {
 
   })
 
+  api.on('enterpip', () => {
+
+  })
+
+  api.on('exitpip', () => {
+
+  })
+
 
   return params
 

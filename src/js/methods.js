@@ -1,4 +1,10 @@
 import fscreen from 'fscreen'
+import {
+  enterpip,
+  exitpip,
+  enterfullscreen,
+  exitfullscreen
+} from './custom-events'
 
 /**
  * @description Player methods
@@ -113,11 +119,15 @@ const methods = (params) => {
     }
   }
 
-  const fullscreenchangeHandler = e => {
+  fscreen.addEventListener('fullscreenchange', fullscreenchangeHandler, false)
+
+  function fullscreenchangeHandler(e) {
     if (fscreen.fullscreenElement !== null) {
       Utils.debug.log('Event triggered: Entered fullscreen mode');
+      video.dispatchEvent(enterfullscreen)
     } else {
       Utils.debug.log('Event triggered: Exited fullscreen mode');
+      video.dispatchEvent(exitfullscreen)
     }
   }
 
@@ -148,6 +158,7 @@ const methods = (params) => {
       return
     }
 
+
     try {
 
       //#region Chrome
@@ -158,9 +169,11 @@ const methods = (params) => {
         if (!pip) {
           // 进入PiP
           await video.requestPictureInPicture()
+          video.dispatchEvent(enterpip)
         } else {
           // 退出PiP
           await document.exitPictureInPicture()
+          video.dispatchEvent(exitpip)
         }
       }
       //#endregion
@@ -168,6 +181,11 @@ const methods = (params) => {
       //#region Safari
       if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function') {
         video.webkitSetPresentationMode(video.webkitPresentationMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture')
+        if (video.webkitPresentationMode === 'picture-in-picture') {
+          video.dispatchEvent(enterpip)
+        } else if (video.webkitPresentationMode === 'inline') {
+          video.dispatchEvent(exitpip)
+        }
       }
       //#endregion
 
@@ -176,16 +194,12 @@ const methods = (params) => {
     } finally {
       // 
     }
+
   }
 
   api.on = on
 
   function on(eventName, func) {
-
-    if (eventName === 'enterfullscreen' || eventName === 'exitfullscreen') {
-      fscreen.addEventListener('fullscreenchange', fullscreenchangeHandler, false)
-      return
-    }
 
     if (eventName === 'encrypted') {
       Utils.debug.log(`Event triggered: ${eventName}`)

@@ -21,24 +21,20 @@ export default (params) => {
     api.togglePlay()
   }
 
-  api.on('pause', () => {
-    ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
-
-  })
-
-  api.on('ended', () => {
-    ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
-
+  const tooltip = Coms.tooltip({
+    selector: ctrlEle,
+    title: api.isPlaying() ? Enums.i18n[settings.i18n].pauseTitle : Enums.i18n[settings.i18n].playTitle,
+    container: dom.wrapper
   })
 
   api.on('play', () => {
     ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
-
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].pauseTitle)
   })
 
-  api.on('playing', () => {
-    ctrlEle.innerHTML = Enums.i18n[settings.i18n].pause
-
+  api.on('pause', () => {
+    ctrlEle.innerHTML = Enums.i18n[settings.i18n].play
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].playTitle)
   })
 
   return ctrlEle

@@ -41,6 +41,8 @@ export default (params) => {
     dom
   } = params
 
+  const video = dom.video
+
   const ctrlEleWrapper = document.createElement('div')
   dom.volume = ctrlEleWrapper
   dom.ctrls.left.appendChild(ctrlEleWrapper)
@@ -105,13 +107,21 @@ export default (params) => {
     api.toggleMute()
   })
 
+  const tooltip = Coms.tooltip({
+    selector: volumeIcon,
+    title: api.getVolume() !== 0 ? Enums.i18n[settings.i18n].volumeMuteTitle : Enums.i18n[settings.i18n].volumeUnmuteTitle,
+    container: dom.wrapper
+  })
+
   api.on('volumechange', e => {
     if (api.isMuted()) {
       volumeIcon.innerHTML = 'Muted'
+      tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].volumeUnmuteTitle)
     } else {
       // Only change volume text one time after resuming from muted
       if (volumeIcon.innerHTML !== Enums.i18n[settings.i18n].volume) {
         volumeIcon.innerHTML = Enums.i18n[settings.i18n].volume
+        tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].volumeMuteTitle)
       }
     }
 

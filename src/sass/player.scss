@@ -22,6 +22,7 @@ body {
 
   .little-brother-player-video-wrapper {
     z-index: map-get($map: $layer, $key: player);
+    background-color: $bg-video-wrapper;
   }
 
   .little-brother-player-video-wrapper,

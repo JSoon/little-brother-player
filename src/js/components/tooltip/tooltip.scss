@@ -7,4 +7,13 @@
   background-color: #000;
   color: #fff;
   line-height: 1.2rem;
+  white-space: nowrap;
+  transition: transform .2s, opacity .2s;
+  transform: translateY(-1rem);
+  opacity: 0;
+
+  &.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

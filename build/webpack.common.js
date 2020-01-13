@@ -194,7 +194,8 @@ function providePlugin() {
 
   const plugins = {
     Utils: ['~/js/utils/index', 'default'],
-    Enums: '~/js/enums/index'
+    Enums: '~/js/enums/index',
+    Coms: '~/js/components/index'
   }
 
   console.log(plugins)

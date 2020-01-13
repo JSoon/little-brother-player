@@ -1,5 +1,3 @@
-import tooltip from '~/js/components/tooltip/tooltip'
-
 const {
   relativeCoords
 } = Utils
@@ -108,7 +106,7 @@ export default (params) => {
   api.on('loadedmetadata', e => {
 
     // Make sure duration is not NaN
-    tooltip({
+    Coms.tooltip({
       selector: ctrlBarEle,
       title: '呵呵',
       attached: true,

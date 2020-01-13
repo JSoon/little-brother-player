@@ -28,5 +28,19 @@ export default (params) => {
     api.toggleFullscreen(dom.wrapper, e)
   })
 
+  const tooltip = Coms.tooltip({
+    selector: ctrlEle,
+    title: Enums.i18n[settings.i18n].fullscreenEnterTitle,
+    container: dom.wrapper
+  })
+
+  api.on('enterfullscreen', _ => {
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].fullscreenExitTitle)
+  })
+
+  api.on('exitfullscreen', _ => {
+    tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].fullscreenEnterTitle)
+  })
+
   return ctrlEle
 }
