@@ -12,7 +12,7 @@
 
 - [x] Playing mp3
 - [x] Playing mp4
-- [ ] Playing m3u
+- [x] Playing m3u
 - [x] Displaying poster
 - [ ] Advertisement
 - [ ] Statistics
