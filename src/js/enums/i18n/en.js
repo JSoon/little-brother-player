@@ -4,6 +4,7 @@ const lang = {
   pause: 'Pause',
   pauseTitle: 'Pause(space)',
   stop: 'Stop',
+  loading: 'Loading',
 
   fullscreen: 'Fullscreen',
   fullscreenEnterTitle: 'Fullscreen(f)',

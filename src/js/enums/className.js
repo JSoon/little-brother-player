@@ -40,7 +40,9 @@ const className = {
   playtime: `${prefix}-ctrl-playtime`,
 
   // Components
-  tooltip: `${prefix}-com-tooltip`
+  tooltip: `${prefix}-com-tooltip`,
+  loadingWrapper: `${prefix}-com-loading-wrapper`,
+  loading: `${prefix}-com-loading`
 }
 
 export default className

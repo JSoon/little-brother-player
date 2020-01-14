@@ -19,13 +19,14 @@ const events = (params) => {
   } = params
 
   const video = dom.video
+  const comLoading = Coms.loading(params)
 
   api.on('abort', () => {
 
   })
 
   api.on('canplay', () => {
-
+    comLoading.end()
   })
 
   api.on('canplaythrough', () => {
@@ -37,7 +38,7 @@ const events = (params) => {
   })
 
   api.on('emptied', () => {
-
+    comLoading.end()
   })
 
   api.on('pause', () => {
@@ -48,6 +49,8 @@ const events = (params) => {
 
   })
 
+  // Fired when the paused property is changed from true to false, as a result of the HTMLMediaElement.play() method,
+  // or the autoplay attribute
   api.on('play', () => {
     dom.wrapper.classList.remove(Enums.className.playingPaused)
 
@@ -58,9 +61,10 @@ const events = (params) => {
     }
   })
 
+  // Fired when playback is ready to start after having been paused or delayed due to lack of data
   api.on('playing', () => {
     dom.wrapper.classList.remove(Enums.className.playingPaused)
-
+    comLoading.end()
   })
 
   api.on('error', () => {
@@ -82,6 +86,7 @@ const events = (params) => {
 
   api.on('loadstart', () => {
     Utils.debug.log(`media: ${api.getCurrentSrc()}`)
+    comLoading.start()
 
   })
 
@@ -118,7 +123,7 @@ const events = (params) => {
   })
 
   api.on('waiting', () => {
-
+    comLoading.start()
   })
 
   api.on('encrypted', () => {

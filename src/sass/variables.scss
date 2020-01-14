@@ -11,7 +11,8 @@ $layer: ("player": 1,
   "player-ctrl": 20,
   "player-context-menu": 21,
 
-  "player-tooltip": 1000);
+  "player-tooltip": 1000,
+  "player-loading": 2000);
 
 // font
 $font-xl: 1.25rem; // 20
@@ -19,3 +20,6 @@ $font-lg: 1.125rem; // 18
 $font-md: 1rem; // Normally 16px
 $font-sm: .875rem; // 14
 $font-xs: .75rem; // 12
+
+// border-radius
+$border-radius: .12rem;
