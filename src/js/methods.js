@@ -1,4 +1,3 @@
-import HLS from '~/js/hls/hls'
 import fscreen from 'fscreen'
 import {
   enterpip,
@@ -58,7 +57,7 @@ const methods = (params) => {
    */
   api.load = load
 
-  function load(params = {}) {
+  async function load(params = {}) {
     // Update settings
     settings = Object.assign(settings, params)
     settings.live = params.live || false
@@ -67,7 +66,9 @@ const methods = (params) => {
 
     //#region Deal with HTTP live stream
     if (settings.live) {
-      hls = HLS({
+      const HLS = await import('~/js/hls/hls')
+
+      hls = HLS.default({
         settings,
         api,
         dom
@@ -144,7 +145,7 @@ const methods = (params) => {
     dom.wrapper.classList.remove(Enums.className.playingVideo)
     dom.wrapper.classList.remove(Enums.className.playingStream)
     video.innerHTML = ''
-    
+
     stop()
     video.load()
     hls && hls.destroy()

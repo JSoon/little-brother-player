@@ -18,13 +18,12 @@ module.exports = {
   // https://webpack.js.org/configuration/mode/#root
   mode: ENV,
   entry: {
-    [OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME),
-    [publicDate + '/' + OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME)
+    [OUTPUT_NAME]: path.resolve(constants.srcPath, INPUT_NAME)
   },
   output: {
     filename: '[name].js',
-    path: constants.publicPath,
-    publicPath: '/'
+    path: path.resolve(constants.publicPath, publicDate),
+    publicPath: '/' // external resources base path
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -167,7 +166,33 @@ module.exports = {
     jquery: 'jQuery',
   },
   optimization: {
-
+    splitChunks: {
+      chunks: 'async',
+      minSize: 200 * 1024, // kb
+      // minRemainingSize: 0, // introduced in webpack 5
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 6,
+      maxInitialRequests: 4,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: 30,
+      cacheGroups: {
+        hls: {
+          name: `${OUTPUT_NAME}.hls`, // split elementUI into a single package
+          priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+          test: /[\\/]node_modules[\\/]_?hls\.js(.*)/ // in order to adapt to cnpm
+        },
+        // defaultVendors: {
+        // 	test: /[\\/]node_modules[\\/]/,
+        // 	priority: -10
+        // },
+        // default: {
+        // 	minChunks: 2,
+        // 	priority: -20,
+        // 	reuseExistingChunk: true
+        // }
+      }
+    }
   },
   plugins: [
     new webpack.ProvidePlugin(
