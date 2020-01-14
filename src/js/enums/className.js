@@ -1,9 +1,18 @@
 const prefix = 'little-brother-player'
 
 const className = {
-  video: `${prefix}-video`,
-  videoWrapper: `${prefix}-video-wrapper`,
   playerWrapper: `${prefix}-wrapper`,
+
+  // Status
+  playingImage: `playing-image`,
+  playingVideo: `playing-video`,
+  playingStream: `playing-stream`,
+  playingPlaying: `playing-playing`,
+  playingPaused: `playing-paused`,
+  playingError: `playing-error`,
+  
+  videoWrapper: `${prefix}-video-wrapper`,
+  video: `${prefix}-video`,
 
   // UI
   ui: `${prefix}-ui`,

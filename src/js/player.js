@@ -10,6 +10,7 @@ import dom from '~/js/dom'
  * @param {string}          settings.type       Media type, i.e. mp4, ogg, m3u8
  * @param {array|string}    settings.media      Media source
  * @param {string}          settings.i18n       i18n code
+ * @param {boolean}         settings.live       Live stream
  * 
  * Native attributes below
  * @param {boolean}         settings.autoplay   
@@ -23,7 +24,8 @@ const littleBrother = (settings) => {
   const defaults = {
     debug: false,
     autoplay: false,
-    i18n: 'en'
+    i18n: 'en',
+    live: false
   }
 
   // Merge defaults

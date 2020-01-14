@@ -41,7 +41,7 @@ const events = (params) => {
   })
 
   api.on('pause', () => {
-
+    dom.wrapper.classList.add(Enums.className.playingPaused)
   })
 
   api.on('ended', () => {
@@ -49,14 +49,22 @@ const events = (params) => {
   })
 
   api.on('play', () => {
+    dom.wrapper.classList.remove(Enums.className.playingPaused)
 
+    if (settings.live) {
+      dom.wrapper.classList.add(Enums.className.playingStream)
+    } else {
+      dom.wrapper.classList.add(Enums.className.playingVideo)
+    }
   })
 
   api.on('playing', () => {
+    dom.wrapper.classList.remove(Enums.className.playingPaused)
 
   })
 
   api.on('error', () => {
+    dom.wrapper.classList.add(Enums.className.playingError)
 
   })
 

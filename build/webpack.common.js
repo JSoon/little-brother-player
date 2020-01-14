@@ -35,7 +35,11 @@ module.exports = {
     compress: true,
     port: 9000,
     watchOptions: {
-      ignored: /(node_modules|bower_components)/,
+      ignored: [
+        'node_modules',
+        'bower_components',
+        'utils/**/*'
+      ],
       aggregateTimeout: 1000
     }
   },

@@ -43,6 +43,8 @@ export default (params) => {
   pip(params)
   fullscreen(params)
 
+  console.log('Controllers:', dom)
+
   shortcuts(params)
 
   return controllerBar

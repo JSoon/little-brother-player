@@ -1,3 +1,4 @@
+import HLS from '~/js/hls/hls'
 import fscreen from 'fscreen'
 import {
   enterpip,
@@ -16,13 +17,16 @@ import {
 
 const methods = (params) => {
 
+  let {
+    settings
+  } = params
   const {
-    settings,
     api,
     dom
   } = params
 
   const video = dom.video
+  let hls = null
 
   let volumeBeforeMuted = settings.volume || 1
 
@@ -54,19 +58,33 @@ const methods = (params) => {
    */
   api.load = load
 
-  function load(params) {
-    params = Object.assign(settings, params)
+  function load(params = {}) {
+    // Update settings
+    settings = Object.assign(settings, params)
+    settings.live = params.live || false
 
     destroy()
 
+    //#region Deal with HTTP live stream
+    if (settings.live) {
+      hls = HLS({
+        settings,
+        api,
+        dom
+      })
+      return
+    }
+    //#endregion
+
     //#region Deal with image
-    if (Utils.typeof(params.media) === 'string') {
-      const extName = Utils.fileExt(params.media)
+    if (Utils.typeof(settings.media) === 'string') {
+      const extName = Utils.fileExt(settings.media)
       // Get image extension
       if (extName && Enums.MIME.image[extName]) {
         // If this is an image uri, then render and return
-        dom.videoWrapper.style.backgroundImage = `url(${params.media})`
-        dom.wrapper.classList.add('image')
+        dom.videoWrapper.style.backgroundImage = `url(${settings.media})`
+        // Hide UI controllers
+        dom.wrapper.classList.add(Enums.className.playingImage)
         return
       }
     }
@@ -75,19 +93,19 @@ const methods = (params) => {
     //#region Deal with video
     let allCantPlay = true // If all sources are unavalaible, throw error
 
-    if (Utils.typeof(params.media) === 'string') {
-      const mediaSrc = params.media
-      // You have to pass params.type if params.media is a url
-      if (!params.type) {
+    if (Utils.typeof(settings.media) === 'string') {
+      const mediaSrc = settings.media
+      // You have to pass settings.type if settings.media is a url
+      if (!settings.type) {
         throw 'No media type!'
       }
-      params.media = [{
+      settings.media = [{
         src: mediaSrc,
-        type: params.type
+        type: settings.type
       }]
     }
 
-    params.media.forEach(medium => {
+    settings.media.forEach(medium => {
       const srcEle = document.createElement('source')
       srcEle.src = medium.src
       srcEle.type = Enums.MIME.video[medium.type]
@@ -103,7 +121,6 @@ const methods = (params) => {
       throw 'Invalid media type!'
     }
     video.load()
-    dom.wrapper.classList.remove('image')
     //#endregion
   }
 
@@ -123,12 +140,17 @@ const methods = (params) => {
   api.destroy = destroy
 
   function destroy() {
+    dom.wrapper.classList.remove(Enums.className.playingImage)
+    dom.wrapper.classList.remove(Enums.className.playingVideo)
+    dom.wrapper.classList.remove(Enums.className.playingStream)
     video.innerHTML = ''
+    
     stop()
-    // If has last src, then load it in case the last one is still playing
-    if (getCurrentSrc()) {
-      video.load()
-    }
+    video.load()
+    hls && hls.destroy()
+    // // If has last src, then load current sources in case the last one is still playing
+    // if (getCurrentSrc()) {
+    // }
   }
 
   api.togglePlay = togglePlay

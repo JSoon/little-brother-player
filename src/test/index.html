@@ -110,6 +110,13 @@
       })
     }
 
+    document.getElementById('J_SwitchToLive').onclick = e => {
+      player.load({
+        media: 'http://yy.migu.cmvideo.cn:8080/wd_ls/gyh/gyh/1200/2018/index.m3u8?msisdn=40512101501013141712144513681871&spid=600226&sid=5500035480&pid=2028593040&Channel_ID=0119_04102000-99000-200900260000000&ProgramID=619495398&client_ip=10.0.30.254&assertID=5100031417&partnerid=1001621&AdCodeNum=51&AdFlag=0&VideoType=live&timestamp=20200114103801&encrypt=6ca6a3deadab5c459ecb3a9663868d11',
+        live: true
+      })
+    }
+
     // player.on('pause', () => {
     //   console.log('呵呵');
 

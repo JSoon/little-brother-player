@@ -20,12 +20,46 @@ body {
     padding-top: percentage($number: 9/16);
   }
 
-  &.image {
-    .little-brother-player-video,
-    .little-brother-player-ui {
-      display: none;
+  //#region Playing status
+
+  &:hover,
+  &.playing-paused {
+    .little-brother-player-ctrl-bar {
+      opacity: 1;
     }
   }
+
+  &.playing-error {}
+
+  &.playing-image {
+
+    .little-brother-player-video,
+    .little-brother-player-ui {
+      visibility: hidden;
+    }
+  }
+
+  &.playing-video {
+
+    .little-brother-player-video,
+    .little-brother-player-ui {
+      visibility: visible;
+    }
+  }
+
+  &.playing-stream {
+    .little-brother-player-ui {
+      visibility: visible;
+    }
+
+    .little-brother-player-ctrl-progressbar,
+    .little-brother-player-ctrl-playtime {
+      visibility: hidden;
+    }
+
+  }
+
+  //#endregion
 
   .little-brother-player-video-wrapper {
     z-index: map-get($map: $layer, $key: player);
@@ -52,6 +86,7 @@ body {
   // Main UI
   .little-brother-player-ui {
     z-index: map-get($map: $layer, $key: player-ui);
+    visibility: hidden;
 
     // Debug information panel
     &:hover {
@@ -111,6 +146,8 @@ body {
     background-color: $bg-ctrl;
     color: #fff;
     cursor: pointer;
+    opacity: 0;
+    transition: opacity .4s;
 
     .little-brother-player-ctrl-bar-ctrls {
       position: absolute;
