@@ -66,7 +66,7 @@ const methods = (params) => {
 
     //#region Deal with HTTP live stream
     if (settings.live) {
-      const HLS = await import('~/js/hls/hls')
+      const [err, HLS] = await Utils.promise(import('~/js/hls/hls'))
 
       hls = HLS.default({
         settings,
@@ -223,43 +223,38 @@ const methods = (params) => {
       return
     }
 
+    //#region Chrome
+    if (document.pictureInPictureEnabled) {
 
-    try {
+      const pip = video === document.pictureInPictureElement
+      let err
 
-      //#region Chrome
-      if (document.pictureInPictureEnabled) {
-
-        var pip = video === document.pictureInPictureElement
-
-        if (!pip) {
-          // 进入PiP
-          await video.requestPictureInPicture()
+      if (!pip) {
+        // 进入PiP
+        [err] = await Utils.promise(video.requestPictureInPicture())
+        if (!err) {
           video.dispatchEvent(enterpip)
-        } else {
-          // 退出PiP
-          await document.exitPictureInPicture()
+        }
+      } else {
+        // 退出PiP
+        [err] = await Utils.promise(document.exitPictureInPicture())
+        if (!err) {
           video.dispatchEvent(exitpip)
         }
       }
-      //#endregion
-
-      //#region Safari
-      if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function') {
-        video.webkitSetPresentationMode(video.webkitPresentationMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture')
-        if (video.webkitPresentationMode === 'picture-in-picture') {
-          video.dispatchEvent(enterpip)
-        } else if (video.webkitPresentationMode === 'inline') {
-          video.dispatchEvent(exitpip)
-        }
-      }
-      //#endregion
-
-    } catch (error) {
-      Utils.debug.error(error)
-    } finally {
-      // 
     }
+    //#endregion
 
+    //#region Safari
+    if (video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function') {
+      video.webkitSetPresentationMode(video.webkitPresentationMode === 'picture-in-picture' ? 'inline' : 'picture-in-picture')
+      if (video.webkitPresentationMode === 'picture-in-picture') {
+        video.dispatchEvent(enterpip)
+      } else if (video.webkitPresentationMode === 'inline') {
+        video.dispatchEvent(exitpip)
+      }
+    }
+    //#endregion
   }
 
   api.on = on
