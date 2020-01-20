@@ -138,6 +138,31 @@ const methods = (params) => {
     setCurrentTime(0)
   }
 
+  api.fastForwardBackward = fastForwardBackward
+
+  function fastForwardBackward(sec) {
+
+    const seekTime = video.currentTime + sec
+    const timeRangesObject = video.seekable
+    // const timeRanges = []
+    let canFast = false
+    // Go through the object and output an array
+    for (let count = 0; count < timeRangesObject.length; count++) {
+      // timeRanges.push([timeRangesObject.start(count), timeRangesObject.end(count)])
+      if (seekTime <= timeRangesObject.end(count) && seekTime >= timeRangesObject.start(count)) {
+        canFast = true
+      }
+    }
+    // console.log(timeRanges)
+
+    if (canFast) {
+      video.currentTime += sec
+      Coms.toast(params, {
+        title: `${sec}s`
+      })
+    }
+  }
+
   api.destroy = destroy
 
   function destroy() {
@@ -338,6 +363,12 @@ const methods = (params) => {
     return video.currentSrc
   }
 
+  api.getPlaybackRate = getPlaybackRate
+
+  function getPlaybackRate() {
+    return video.playbackRate
+  }
+
   api.isPlaying = isPlaying
 
   function isPlaying() {
@@ -373,6 +404,9 @@ const methods = (params) => {
 
   //#region Setters
 
+  // Overwritten the same method on the MDN, which is an experimental technology
+  // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/fastSeek#Specifications
+  api.fastSeek = setCurrentTime
   api.setCurrentTime = setCurrentTime
 
   function setCurrentTime(val) {
@@ -384,6 +418,12 @@ const methods = (params) => {
   function setVolume(val) {
     volumeBeforeMuted = video.volume
     video.volume = val
+  }
+
+  api.setPlaybackRate = setPlaybackRate
+
+  function setPlaybackRate(val) {
+    video.playbackRate = val
   }
 
   //#endregion

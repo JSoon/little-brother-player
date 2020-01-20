@@ -8,6 +8,12 @@ import Hls from 'hls.js'
 
 export default (params, hls) => {
 
+  const {
+    settings,
+    api,
+    dom
+  } = params
+
   let recoverTime = 0
   let maxRecoverTime = 5
 
@@ -17,6 +23,11 @@ export default (params, hls) => {
     var errorFatal = data.fatal
 
     Utils.debug.error(`HLS Error: ${errorDetails}`)
+    dom.loading && dom.loading.classList.add('hide')
+
+    Coms.toast(params, {
+      title: errorDetails
+    })
 
     if (errorFatal) {
       if (recoverTime > maxRecoverTime) {

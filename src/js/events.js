@@ -123,7 +123,10 @@ const events = (params) => {
   })
 
   api.on('waiting', () => {
-    comLoading.start()
+    // Only show loading while loading media
+    if (video.networkState === Enums.networkState.NETWORK_LOADING) {
+      comLoading.start()
+    }
   })
 
   api.on('encrypted', () => {

@@ -41,6 +41,16 @@ export default (params) => {
         api.togglePiP()
         break
 
+      case 'ArrowLeft':
+        // Fast forward
+        api.fastForwardBackward(-settings.fastStep || -5)
+        break
+
+      case 'ArrowRight':
+        // Fast backward
+        api.fastForwardBackward(settings.fastStep || 5)
+        break
+
       default:
         break
     }

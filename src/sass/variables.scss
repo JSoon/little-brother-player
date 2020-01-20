@@ -12,7 +12,10 @@ $layer: ("player": 1,
   "player-context-menu": 21,
 
   "player-tooltip": 1000,
-  "player-loading": 2000);
+  "player-toast": 2000,
+  "player-loading": 2010,
+
+);
 
 // font
 $font-xl: 1.25rem; // 20

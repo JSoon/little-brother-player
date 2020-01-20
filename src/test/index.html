@@ -40,18 +40,23 @@
 </head>
 
 <body>
+
+  <div class="test-control">
+    <button id="J_SwitchToMp4" title="Photograph">MP4</button>
+    <button id="J_Mp4PlaybackRate1" title="Photograph">MP4/0.5X</button>
+    <button id="J_Mp4PlaybackRate2" title="Photograph">MP4/1.0X</button>
+    <button id="J_Mp4PlaybackRate3" title="Photograph">MP4/1.5X</button>
+    <button id="J_Mp4PlaybackRate4" title="Photograph">MP4/2.0X</button>
+    <button id="J_SwitchToMp3" title="Thinking it loud">MP3</button>
+    <button id="J_SwitchToOgg">OGG</button>
+    <button id="J_SwitchToImage">IMAGE</button>
+    <button id="J_SwitchToLive">M3U8</button>
+  </div>
+
   <div class="test-page">
     <img src="./logo-l.jpg" alt="logo-l">
     <div id="J_LittleBrotherPlayer"></div>
     <img src="./logo-r.jpg" alt="logo-r">
-  </div>
-
-  <div class="test-control">
-    <button id="J_SwitchToMp4">photograph</button>
-    <button id="J_SwitchToMp3">thinking it loud</button>
-    <button id="J_SwitchToOgg">ogg</button>
-    <button id="J_SwitchToImage">image</button>
-    <button id="J_SwitchToLive">m3u8</button>
   </div>
 
   <script src="/little.brother.player.js"></script>
@@ -81,6 +86,7 @@
       debug: true,
       autoplay: true,
       volume: 0.5,
+      // playbackRate: 2,
       // poster: '/logo.jpg'
       // muted: true
     })
@@ -115,6 +121,19 @@
         media: 'http://yy.migu.cmvideo.cn:8080/wd_ls/gyh/gyh/1200/2018/index.m3u8?msisdn=40512101501013141712144513681871&spid=600226&sid=5500035480&pid=2028593040&Channel_ID=0119_04102000-99000-200900260000000&ProgramID=619495398&client_ip=10.0.30.254&assertID=5100031417&partnerid=1001621&AdCodeNum=51&AdFlag=0&VideoType=live&timestamp=20200114103801&encrypt=6ca6a3deadab5c459ecb3a9663868d11',
         live: true
       })
+    }
+
+    document.getElementById('J_Mp4PlaybackRate1').onclick = e => {
+      player.setPlaybackRate(0.5)
+    }
+    document.getElementById('J_Mp4PlaybackRate2').onclick = e => {
+      player.setPlaybackRate(1)
+    }
+    document.getElementById('J_Mp4PlaybackRate3').onclick = e => {
+      player.setPlaybackRate(1.5)
+    }
+    document.getElementById('J_Mp4PlaybackRate4').onclick = e => {
+      player.setPlaybackRate(2)
     }
 
     // player.on('pause', () => {

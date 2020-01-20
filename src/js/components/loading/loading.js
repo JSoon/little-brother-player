@@ -21,12 +21,19 @@ const loading = params => {
   const eleWrapper = document.createElement('div')
   const ele = document.createElement('div')
   eleWrapper.appendChild(ele)
+  dom.loading = ele
 
   eleWrapper.classList.add(Enums.className.loadingWrapper)
   ele.classList.add(Enums.className.loading)
   ele.innerHTML = Enums.i18n[settings.i18n].loading
 
+  ele.addEventListener('transitionend', e => {
+    eleWrapper.style.display = 'none'
+  })
+
   const start = () => {
+    ele.classList.remove('hide')
+    // Singleton for loading
     if (wrapper.contains(eleWrapper)) {
       eleWrapper.style.display = 'block'
       return
@@ -35,7 +42,7 @@ const loading = params => {
   }
 
   const end = () => {
-    eleWrapper.style.display = 'none'
+    ele.classList.add('hide')
   }
 
   return {

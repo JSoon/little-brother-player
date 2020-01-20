@@ -37,6 +37,7 @@ export default (params) => {
       <p>currentTime: ${api.getCurrentTime()}s</p>
       <p>duration: ${api.getDuration()}s</p>
       <p>volume: ${api.getVolume()}</p>
+      <p>playbackRate: ${api.getPlaybackRate()}</p>
       <p>intrinsic dimensions: ${api.getVideoWidth()} x ${api.getVideoHeight()}</p>
       <p>buffered length: ${api.getBuffered().length}</p>
       ${bufferedInfo}

@@ -42,7 +42,9 @@ const className = {
   // Components
   tooltip: `${prefix}-com-tooltip`,
   loadingWrapper: `${prefix}-com-loading-wrapper`,
-  loading: `${prefix}-com-loading`
+  loading: `${prefix}-com-loading`,
+  toastWrapper: `${prefix}-com-toast-wrapper`,
+  toast: `${prefix}-com-toast`
 }
 
 export default className

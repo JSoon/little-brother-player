@@ -5,19 +5,21 @@ import dom from '~/js/dom'
  * @description Initialize player
  * 
  * @param {object}          settings
- * @param {boolean}         settings.debug      Debug mode    
- * @param {string}          settings.id         Player element id
- * @param {string}          settings.type       Media type, i.e. mp4, ogg, m3u8
- * @param {array|string}    settings.media      Media source
- * @param {string}          settings.i18n       i18n code
- * @param {boolean}         settings.live       Live stream
+ * @param {boolean}         settings.debug          Debug mode    
+ * @param {string}          settings.id             Player element id
+ * @param {string}          settings.type           Media type, i.e. mp4, ogg, m3u8
+ * @param {array|string}    settings.media          Media source
+ * @param {string}          settings.i18n           i18n code
+ * @param {boolean}         settings.live           Live stream
  * 
  * Native attributes below
  * @param {boolean}         settings.autoplay   
- * @param {string}          settings.poster     A URL for an image to be shown while the video is downloading
- * @param {string}          settings.preload    None, metadata, auto
- * @param {boolean}         settings.muted      If true, media will be able to played despite the limit of autoplay policy
- * @param {number}          settings.volume     A double indicating the audio volume, from 0.0 (silent) to 1.0 (loudest)
+ * @param {string}          settings.poster         A URL for an image to be shown while the video is downloading
+ * @param {string}          settings.preload        None, metadata, auto
+ * @param {boolean}         settings.muted          If true, media will be able to played despite the limit of autoplay policy
+ * @param {number}          settings.volume         A double indicating the audio volume, from 0.0 (silent) to 1.0 (loudest)
+ * @param {number}          settings.playbackRate   A double setting the rate at which the media is being played back, 1.0 is "normal speed"
+ * @param {number}          settings.fastStep       Fast forward & fast backward step in seconds
  */
 const littleBrother = (settings) => {
 

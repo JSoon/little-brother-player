@@ -39,6 +39,7 @@ export default (params) => {
   params.videoEle = videoEle
   dom.videoWrapper = videoWrapper
   dom.video = videoEle
+
   // Set video native attributes
   Object.keys(settings).forEach(key => {
     if (
@@ -48,6 +49,9 @@ export default (params) => {
       videoEle[key] = settings[key]
     }
   })
+  // Set default properties
+  videoEle.defaultMuted = settings.muted || videoEle.defaultMuted
+  videoEle.defaultPlaybackRate = settings.playbackRate || videoEle.defaultPlaybackRate
 
   // Define methods
   methods(params)

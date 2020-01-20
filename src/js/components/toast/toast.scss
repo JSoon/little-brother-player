@@ -1,14 +1,14 @@
 @import "~/sass/variables";
 
-.little-brother-player-com-loading-wrapper {
-  z-index: map-get($map: $layer, $key: player-loading);
+.little-brother-player-com-toast-wrapper {
+  z-index: map-get($map: $layer, $key: player-toast);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
-  .little-brother-player-com-loading {
+  .little-brother-player-com-toast {
     position: absolute;
     top: 50%;
     left: 50%;
