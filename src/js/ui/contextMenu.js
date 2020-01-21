@@ -75,6 +75,27 @@ export default (params) => {
     contextMenu.classList.remove('show')
   })
 
+  // Copy embed code
+  const copyEmbedCode = document.createElement('div')
+  copyEmbedCode.innerHTML = `Copy embed code`
+  contextMenu.appendChild(copyEmbedCode)
+  copyEmbedCode.addEventListener('click', e => {
+    const {
+      protocol,
+      host,
+      pathname
+    } = window.location
+    const width = dom.wrapper.clientWidth
+    const height = dom.wrapper.clientHeight
+    const src = `${protocol}//${host}${pathname}`
+    const embedCode = `<iframe width="${width}" height="${height}" src="${src}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    Utils.copyToClipboard(embedCode)
+    Coms.toast(params, {
+      title: 'Copied!'
+    })
+    contextMenu.classList.remove('show')
+  })
+
   // Context menu control
   dom.ui.addEventListener('contextmenu', e => {
     e.preventDefault()

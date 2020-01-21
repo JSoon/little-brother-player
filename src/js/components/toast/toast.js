@@ -23,18 +23,14 @@ const toast = (params, opts) => {
   } = opts
 
   const wrapper = dom.wrapper
-  const eleWrapper = document.createElement('div')
   const ele = document.createElement('div')
-  eleWrapper.appendChild(ele)
-
-  eleWrapper.classList.add(Enums.className.toastWrapper)
   ele.classList.add(Enums.className.toast)
   ele.innerHTML = title
 
-  wrapper.appendChild(eleWrapper)
+  wrapper.appendChild(ele)
 
   ele.addEventListener('transitionend', e => {
-    eleWrapper.remove()
+    ele.remove()
   })
 
   setTimeout(_ => {

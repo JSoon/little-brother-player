@@ -1,29 +1,21 @@
 @import "~/sass/variables";
 
-.little-brother-player-com-toast-wrapper {
+.little-brother-player-com-toast {
   z-index: map-get($map: $layer, $key: player-toast);
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  padding: 1rem;
+  background-color: rgba($color: #000000, $alpha: .8);
+  color: #fff;
+  border-radius: $border-radius;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: all .65s ease-out;
 
-  .little-brother-player-com-toast {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    padding: 1rem;
-    background-color: rgba($color: #000000, $alpha: .8);
-    color: #fff;
-    border-radius: $border-radius;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    transition: all .65s ease-out;
-
-    &.hide {
-      // transition-delay: .5s;
-      transform: translate(-50%, -70%);
-      opacity: 0;
-    }
+  &.hide {
+    // transition-delay: .5s;
+    transform: translate(-50%, -70%);
+    opacity: 0;
   }
 }
