@@ -121,8 +121,10 @@ body {
       overflow: hidden;
       background-color: $bg-context-menu;
       font-size: $font-xs;
+      line-height: 2;
       color: white;
       white-space: nowrap;
+      cursor: pointer;
 
       &.show {
         display: block;
@@ -130,6 +132,10 @@ body {
 
       >* {
         padding: .2rem .6rem;
+
+        &:hover {
+          background-color: $bg-context-menu-hover;
+        }
       }
     }
   }

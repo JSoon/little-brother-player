@@ -121,6 +121,7 @@ const methods = (params) => {
     if (allCantPlay) {
       throw 'Invalid media type!'
     }
+    settings.initialTime && setCurrentTime(settings.initialTime)
     video.load()
     //#endregion
   }

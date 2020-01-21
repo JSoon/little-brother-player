@@ -20,6 +20,7 @@ import dom from '~/js/dom'
  * @param {number}          settings.volume         A double indicating the audio volume, from 0.0 (silent) to 1.0 (loudest)
  * @param {number}          settings.playbackRate   A double setting the rate at which the media is being played back, 1.0 is "normal speed"
  * @param {number}          settings.fastStep       Fast forward & fast backward step in seconds
+ * @param {number}          settings.initialTime    Initial playback time
  */
 const littleBrother = (settings) => {
 
@@ -27,7 +28,8 @@ const littleBrother = (settings) => {
     debug: false,
     autoplay: false,
     i18n: 'en',
-    live: false
+    live: false,
+    initialTime: Utils.getUrlParamByName(Enums.paramName.initialTime)
   }
 
   // Merge defaults
