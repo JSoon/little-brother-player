@@ -6,7 +6,7 @@ const context = require.context('.', false, /\.js$/)
 const obj = {}
 
 
-context.keys().forEach(function (key) {
+context.keys().forEach(key => {
   const apiName = key.match(/\/(.*)\.js$/)
   const module = context(key)
 
