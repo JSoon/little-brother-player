@@ -23,7 +23,11 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(constants.publicPath, publicDate),
-    publicPath: '/' // external resources base path
+    publicPath: '/', // chunks resources base path
+    // https://webpack.js.org/configuration/output/#outputlibrarytarget
+    library: 'littleBrother', // window.littleBrother
+    libraryExport: 'default',
+    libraryTarget: 'umd'
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -232,7 +236,8 @@ function providePlugin() {
   const plugins = {
     Utils: ['~/js/utils/index', 'default'],
     Enums: '~/js/enums/index',
-    Coms: '~/js/components/index'
+    Coms: ['~/js/components/index', 'default'],
+    Global: ['~/js/global', 'default']
   }
 
   console.log(plugins)

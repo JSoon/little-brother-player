@@ -11,6 +11,6 @@ export default (string) => {
   const extPattern = /\.(\w+)(?:[\?#]|$)/i
   const extName = string.match(extPattern)
 
-  return extName ? extName[1] : null
+  return extName ? extName[1] : 'Unknown'
 
 }

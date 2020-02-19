@@ -25,7 +25,7 @@ export default (params) => {
   contextMenu.appendChild(version)
   version.addEventListener('click', e => {
     Utils.copyToClipboard(version.innerHTML)
-    Coms.toast(params, {
+    Coms.toast({
       title: 'Copied!'
     })
     contextMenu.classList.remove('show')
@@ -37,7 +37,7 @@ export default (params) => {
   contextMenu.appendChild(copyright)
   copyright.addEventListener('click', e => {
     Utils.copyToClipboard(copyright.innerHTML)
-    Coms.toast(params, {
+    Coms.toast({
       title: 'Copied!'
     })
     contextMenu.classList.remove('show')
@@ -49,7 +49,7 @@ export default (params) => {
   contextMenu.appendChild(copyURL)
   copyURL.addEventListener('click', e => {
     Utils.copyToClipboard(window.location.href)
-    Coms.toast(params, {
+    Coms.toast({
       title: 'Copied!'
     })
     contextMenu.classList.remove('show')
@@ -69,7 +69,7 @@ export default (params) => {
     } = window.location
     const timeUrl = `${protocol}//${host}${pathname}?${Enums.paramName.initialTime}=${time}`
     Utils.copyToClipboard(timeUrl)
-    Coms.toast(params, {
+    Coms.toast({
       title: 'Copied!'
     })
     contextMenu.classList.remove('show')
@@ -90,7 +90,7 @@ export default (params) => {
     const src = `${protocol}//${host}${pathname}`
     const embedCode = `<iframe width="${width}" height="${height}" src="${src}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
     Utils.copyToClipboard(embedCode)
-    Coms.toast(params, {
+    Coms.toast({
       title: 'Copied!'
     })
     contextMenu.classList.remove('show')

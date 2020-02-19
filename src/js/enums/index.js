@@ -14,5 +14,5 @@ export {
   i18n,
   readyState,
   networkState,
-  paramName
+  paramName,
 }

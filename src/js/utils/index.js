@@ -18,6 +18,6 @@ context.keys().forEach(key => {
   }
 })
 
-console.log(obj)
+console.log('Utils', obj)
 
 export default obj

@@ -11,12 +11,12 @@ export default (params) => {
     dom
   } = params
 
-  document.addEventListener('keyup', e => {
+  document.addEventListener('keydown', e => {
     if (e.defaultPrevented) {
       return; // Do nothing if the event was already processed
     }
     // Cancel the default action to avoid it being handled twice
-    e.preventDefault()
+    // e.preventDefault()
 
     Utils.debug.log(`${e.code} triggered`)
 
@@ -24,6 +24,7 @@ export default (params) => {
       case 'Space':
         // Toggle play
         api.togglePlay()
+        e.preventDefault()
         break
 
       case 'KeyF':
@@ -43,12 +44,12 @@ export default (params) => {
 
       case 'ArrowLeft':
         // Fast forward
-        api.fastForwardBackward(-settings.fastStep || -5)
+        !settings.live && api.fastForwardBackward(-settings.fastStep || -5)
         break
 
       case 'ArrowRight':
         // Fast backward
-        api.fastForwardBackward(settings.fastStep || 5)
+        !settings.live && api.fastForwardBackward(settings.fastStep || 5)
         break
 
       default:

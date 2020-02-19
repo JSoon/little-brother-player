@@ -3,20 +3,16 @@ import './toast.scss'
 /**
  * @description Toast
  * 
- * @param {object}  params
- * @param {object}  params.settings
- * @param {object}  params.api
- * @param {object}  params.dom
+ * @param {object}  opts
+ * @param {object}  opts.title    Text
+ * @param {object}  opts.duration Duration time, default to 1500ms
  */
 
-const toast = (params, opts) => {
+const toast = opts => {
 
   const {
-    settings,
-    api,
     dom
-  } = params
-
+  } = Global
   const {
     title,
     duration

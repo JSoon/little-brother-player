@@ -1,5 +1,5 @@
 /**
- * @description Element.closet
+ * @description Element.prototype.closet
  * @compatibility IE9+
  */
 

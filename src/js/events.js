@@ -19,7 +19,7 @@ const events = (params) => {
   } = params
 
   const video = dom.video
-  const comLoading = Coms.loading(params)
+  const comLoading = Coms.loading
 
   api.on('abort', () => {
 
@@ -43,6 +43,10 @@ const events = (params) => {
 
   api.on('pause', () => {
     dom.wrapper.classList.add(Enums.className.playingPaused)
+
+    Coms.toast({
+      title: 'Paused'
+    })
   })
 
   api.on('ended', () => {
@@ -59,6 +63,10 @@ const events = (params) => {
     } else {
       dom.wrapper.classList.add(Enums.className.playingVideo)
     }
+
+    Coms.toast({
+      title: 'Play'
+    })
   })
 
   // Fired when playback is ready to start after having been paused or delayed due to lack of data
@@ -138,7 +146,9 @@ const events = (params) => {
   })
 
   api.on('enterfullscreen', () => {
-
+    Coms.toast({
+      title: 'Fullscreen'
+    })
   })
 
   api.on('exitfullscreen', () => {

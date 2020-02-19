@@ -53,6 +53,9 @@ export default (params) => {
   videoEle.defaultMuted = settings.muted || videoEle.defaultMuted
   videoEle.defaultPlaybackRate = settings.playbackRate || videoEle.defaultPlaybackRate
 
+  // Register global dom
+  Global.dom = dom
+
   // Define methods
   methods(params)
 

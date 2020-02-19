@@ -158,8 +158,8 @@ const methods = (params) => {
 
     if (canFast) {
       video.currentTime += sec
-      Coms.toast(params, {
-        title: `${sec}s`
+      Coms.toast({
+        title: `${sec > 0 ? '+' + sec : sec}s`
       })
     }
   }
@@ -227,12 +227,18 @@ const methods = (params) => {
   function toggleMute() {
     if (!isMuted()) {
       setVolume(0)
+      Coms.toast({
+        title: 'Muted'
+      })
     } else {
       if (volumeBeforeMuted !== 0) {
         setVolume(volumeBeforeMuted)
       } else {
         setVolume(1)
       }
+      Coms.toast({
+        title: 'Unmuted'
+      })
     }
   }
 

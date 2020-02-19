@@ -117,9 +117,16 @@
       })
     }
 
+    // HLS .m3u8 streams for testing
+    // https://bitmovin.com/mpeg-dash-hls-examples-sample-streams/
+    const liveTestUrl1 = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+    const liveTestUlr2 = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
+    const liveTestUlr3 = 'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8'
+    const liveTestUlr4 = 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8'
+    const liveTestUlr5 = 'http://www.streambox.fr/playlists/test_001/stream.m3u8'
     document.getElementById('J_SwitchToLive').onclick = e => {
       player.load({
-        media: 'http://yy.migu.cmvideo.cn:8080/wd_ls/gyh/gyh/1200/2018/index.m3u8?msisdn=40512101501013141712144513681871&spid=600226&sid=5500035480&pid=2028593040&Channel_ID=0119_04102000-99000-200900260000000&ProgramID=619495398&client_ip=10.0.30.254&assertID=5100031417&partnerid=1001621&AdCodeNum=51&AdFlag=0&VideoType=live&timestamp=20200114103801&encrypt=6ca6a3deadab5c459ecb3a9663868d11',
+        media: liveTestUlr2,
         live: true
       })
     }

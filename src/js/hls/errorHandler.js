@@ -23,9 +23,9 @@ export default (params, hls) => {
     var errorFatal = data.fatal
 
     Utils.debug.error(`HLS Error: ${errorDetails}`)
-    dom.loading && dom.loading.classList.add('hide')
+    // dom.loading && dom.loading.classList.add('hide')
 
-    Coms.toast(params, {
+    Coms.toast({
       title: errorDetails
     })
 

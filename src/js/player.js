@@ -1,5 +1,5 @@
 import '~/js/package'
-import dom from '~/js/dom'
+import DOM from '~/js/dom'
 
 /**
  * @description Initialize player
@@ -22,7 +22,7 @@ import dom from '~/js/dom'
  * @param {number}          settings.fastStep       Fast forward & fast backward step in seconds
  * @param {number}          settings.initialTime    Initial playback time
  */
-const littleBrother = (settings) => {
+const littleBrother = settings => {
 
   const defaults = {
     debug: false,
@@ -43,14 +43,21 @@ const littleBrother = (settings) => {
     throw 'No media sources!'
   }
 
+  // Register global settings
+  Global.settings = settings
+
   /**
    * @description Generate player DOM, Define methods & Define methods
    */
   const {
+    dom,
     api
-  } = dom({
+  } = DOM({
     settings
   })
+
+  // Define static params
+  littleBrother.dom = dom
 
   // Load media
   api.load(settings)

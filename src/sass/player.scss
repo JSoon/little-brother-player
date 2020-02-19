@@ -81,7 +81,9 @@ body {
     height: 100%;
   }
 
-  .little-brother-player-video {}
+  .little-brother-player-video {
+    background-color: $bg-video;
+  }
 
   // Main UI
   .little-brother-player-ui {
