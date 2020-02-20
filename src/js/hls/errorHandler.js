@@ -25,9 +25,9 @@ export default (params, hls) => {
     Utils.debug.error(`HLS Error: ${errorDetails}`)
     // dom.loading && dom.loading.classList.add('hide')
 
-    Coms.toast({
-      title: errorDetails
-    })
+    // Coms.toast({
+    //   title: errorDetails
+    // })
 
     if (errorFatal) {
       if (recoverTime > maxRecoverTime) {

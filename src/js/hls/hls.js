@@ -1,5 +1,6 @@
 import Hls from 'hls.js'
 import config from './config'
+import eventsHandler from './events'
 import errorHandler from './errorHandler'
 
 /**
@@ -28,26 +29,12 @@ const HLS = (params) => {
   } = params
 
   const video = dom.video
-  const url = settings.media
   const hls = new Hls(config)
 
-  //#region Config live stream UI
-  
-  //#endregion
-
-  //#region Play live stream
-  // bind them together
+  // Bind hls to video element
   hls.attachMedia(video)
-  // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
-  hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-    console.log("video and hls.js are now bound together !")
-    hls.loadSource(url)
-    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-      console.log("manifest loaded, found " + data.levels.length + " quality level")
-      api.play()
-    })
-  })
-  //#endregion
+
+  eventsHandler(params, hls)
 
   errorHandler(params, hls)
 

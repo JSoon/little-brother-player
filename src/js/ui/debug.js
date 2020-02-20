@@ -31,6 +31,17 @@ export default (params) => {
       }
     }
 
+    let hlsInfo = ''
+    if (settings.live && api.hls) {
+      hlsInfo = `
+        <p>----------------- HLS info bellow -----------------</p>
+        <p>number of bitrate: ${api.hls.getLevels().length}</p>
+        <p>current quality: ${api.hls.getCurrentLevel() !== -1 ? api.hls.getCurrentLevelInfo().height + 'p' : 'Auto' }</p>
+        <p>current bandwidth: ${Math.round(api.hls.getBandwidthEstimate()/8/1024)}KB/s</p>
+        <p>---------------------------------------------------</p>
+      `
+    }
+
     let info = `
       <p>uri: ${api.getCurrentSrc()}</p>
       <p>type: ${api.getSrcType()}</p>
@@ -41,6 +52,7 @@ export default (params) => {
       <p>intrinsic dimensions: ${api.getVideoWidth()} x ${api.getVideoHeight()}</p>
       <p>buffered length: ${api.getBuffered().length}</p>
       ${bufferedInfo}
+      ${hlsInfo}
     `
     dom.debug.innerHTML = info
 

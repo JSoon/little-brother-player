@@ -7,6 +7,7 @@ import {
   enterfullpage,
   exitfullpage
 } from './custom-events'
+import hlsAPI from '~/js/hls/methods'
 
 /**
  * @description Player methods
@@ -55,14 +56,14 @@ const methods = (params) => {
    * either by changing the element's src attribute or by adding or removing <source> elements nested within the media element itself.
    * load() will reset the element and rescan the available sources, thereby causing the changes to take effect.
    * 
-   * @param {object}  params  Same as settings
+   * @param {object}  loadSettings  Same as settings
    */
   api.load = load
 
-  async function load(params = {}) {
+  async function load(loadSettings = {}) {
     // Update settings
-    settings = Object.assign(settings, params)
-    settings.live = params.live || false
+    settings = Object.assign(settings, loadSettings)
+    settings.live = loadSettings.live || false
 
     destroy()
 
@@ -70,11 +71,15 @@ const methods = (params) => {
     if (settings.live) {
       const [err, HLS] = await Utils.promise(import('~/js/hls/hls'))
 
-      hls = HLS.default({
-        settings,
-        api,
-        dom
-      })
+      if (err) {
+        throw 'HLS launch fails!'
+      }
+
+      hls = HLS.default(params)
+
+      // Register hls.js methods
+      params.hls = hls
+      api.hls = hlsAPI(params)
       return
     }
     //#endregion
