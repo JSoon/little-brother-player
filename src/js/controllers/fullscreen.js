@@ -1,7 +1,7 @@
 import fscreen from 'fscreen'
 
 /**
- * @description Fullscreen
+ * @description Fullscreen mode
  * 
  * @param {object}  params
  */

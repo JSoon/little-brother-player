@@ -3,7 +3,9 @@ import {
   enterpip,
   exitpip,
   enterfullscreen,
-  exitfullscreen
+  exitfullscreen,
+  enterfullpage,
+  exitfullpage
 } from './custom-events'
 
 /**
@@ -220,6 +222,24 @@ const methods = (params) => {
       Utils.debug.log('Event triggered: Exited fullscreen mode');
       video.dispatchEvent(exitfullscreen)
     }
+  }
+
+  api.toggleFullpage = toggleFullpage
+
+  /**
+   * @description Fullpage
+   * 
+   * @param {object} e Event object
+   */
+  function toggleFullpage(e) {
+    const fullpage = this.hasAttribute('fullpage')
+    if (!fullpage) {
+      this.setAttribute('fullpage', '')
+      video.dispatchEvent(enterfullpage)
+      return
+    }
+    this.removeAttribute('fullpage')
+    video.dispatchEvent(exitfullpage)
   }
 
   api.toggleMute = toggleMute

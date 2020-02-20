@@ -70,6 +70,10 @@
         type: 'ogg'
       }
     ]
+    let someoneYouLoved = [{
+      src: '//vod.migu.cn/Ra30WETeg7QbUFSZSHsRBSMpxNc500qcHI2kqxUVqfD3kK2kjvrdMWtNHSEOFdjDbDilhmhq6gW7NJb5+J2yASA49CyuC8Im8j50+tjpaKpt/2bnFOFtA3EhZpzZcPi3aIwYPhpo+wEuZM7HUmvEV2XvVrXY0gwwRAHC9D5GJxxOBnP8Xb2b3EagmPFPRgW+/600566YALNU.mp4?msisdn=2a257d4c-1ee0-4ad8-8081-b1650c26390a&spid=600906&sid=52839256750100&timestamp=20200220145525&encrypt=89687eda410fad8db897ec6d45cda366&k=0654d3a5abc5400d&t=1582188925419&ec=1&FN=Someone+You+Loved+%28Audio%29',
+      type: 'mp4'
+    }]
     let thinkingItLoud =
       'http://tyst.migu.cn/public/product8th/product38/2019/12/3114/2019%E5%B9%B412%E6%9C%8817%E6%97%A507%E7%82%B914%E5%88%86%E5%86%85%E5%AE%B9%E5%87%86%E5%85%A5%E5%8D%8E%E7%BA%B391%E9%A6%96093266/%E6%A0%87%E6%B8%85%E9%AB%98%E6%B8%85/MP3_128_16_Stero/6005751Y7GX.mp3'
 
@@ -94,7 +98,8 @@
 
     document.getElementById('J_SwitchToMp4').onclick = e => {
       player.load({
-        media: photograph
+        // media: photograph
+        media: someoneYouLoved
       })
     }
 
@@ -119,7 +124,8 @@
 
     // HLS .m3u8 streams for testing
     // https://bitmovin.com/mpeg-dash-hls-examples-sample-streams/
-    const liveTestUrl1 = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+    const liveTestUrl1 =
+      'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
     const liveTestUlr2 = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8'
     const liveTestUlr3 = 'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8'
     const liveTestUlr4 = 'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8'
@@ -146,6 +152,15 @@
 
     // player.on('pause', () => {
     //   console.log('呵呵');
+
+    // })
+
+    // player.on('enterfullpage', () => {
+    //   console.log('enterfullpage');
+
+    // })
+    // player.on('exitfullpage', () => {
+    //   console.log('exitfullpage');
 
     // })
   </script>

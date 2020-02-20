@@ -155,6 +155,14 @@ const events = (params) => {
 
   })
 
+  api.on('enterfullpage', () => {
+    
+  })
+
+  api.on('exitfullpage', () => {
+
+  })
+
   api.on('enterpip', () => {
 
   })

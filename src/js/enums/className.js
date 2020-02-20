@@ -30,6 +30,7 @@ const className = {
   ctrlsRight: `${prefix}-ctrl-bar-right`,
   play: `${prefix}-ctrl-play`,
   fullscreen: `${prefix}-ctrl-fullscreen`,
+  fullpage: `${prefix}-ctrl-fullpage`,
   pip: `${prefix}-ctrl-pip`,
   volumeWrapper: `${prefix}-ctrl-volume-wrapper`,
   volume: `${prefix}-ctrl-volume`,

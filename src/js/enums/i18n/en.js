@@ -10,6 +10,10 @@ const lang = {
   fullscreenEnterTitle: 'Fullscreen(f)',
   fullscreenExitTitle: 'Exit fullscreen(f)',
 
+  fullpage: 'Fullpage',
+  fullpageEnterTitle: 'Fullpage',
+  fullpageExitTitle: 'Exit Fullpage',
+
   pip: 'PiP',
   pipEnterTitle: 'PiP(p)',
   pipExitTitle: 'Exit PiP(p)',

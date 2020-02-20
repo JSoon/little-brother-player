@@ -1,6 +1,7 @@
 import playBtn from './play'
 import progressbar from './progressbar'
 import fullscreen from './fullscreen'
+import fullpage from './fullpage'
 import pip from './pip'
 import volume from './volume'
 import playtime from './playtime'
@@ -41,6 +42,7 @@ export default (params) => {
   volume(params)
   playtime(params)
   pip(params)
+  fullpage(params)
   fullscreen(params)
 
   console.log('Controllers:', dom)
