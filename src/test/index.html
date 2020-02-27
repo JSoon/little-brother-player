@@ -42,15 +42,17 @@
 <body>
 
   <div class="test-control">
-    <button id="J_SwitchToMp4" title="Photograph">MP4</button>
-    <button id="J_Mp4PlaybackRate1" title="Photograph">MP4/0.5X</button>
-    <button id="J_Mp4PlaybackRate2" title="Photograph">MP4/1.0X</button>
-    <button id="J_Mp4PlaybackRate3" title="Photograph">MP4/1.5X</button>
-    <button id="J_Mp4PlaybackRate4" title="Photograph">MP4/2.0X</button>
-    <button id="J_SwitchToMp3" title="Thinking it loud">MP3</button>
+    <button id="J_Mp4_1">Someone You Loved</button>
+    <button id="J_Mp4_2">Photograph</button>
+    <button id="J_Mp3_1">Thinking Out Loud</button>
     <button id="J_SwitchToOgg">OGG</button>
     <button id="J_SwitchToImage">IMAGE</button>
     <button id="J_SwitchToLive">M3U8</button>
+    <br>
+    <button id="J_PlaybackRate1">0.5X</button>
+    <button id="J_PlaybackRate2">1.0X</button>
+    <button id="J_PlaybackRate3">1.5X</button>
+    <button id="J_PlaybackRate4">2.0X</button>
   </div>
 
   <div class="test-page">
@@ -62,7 +64,7 @@
   <script src="/little.brother.player.js"></script>
   <script>
     let photograph = [{
-        src: '//vod.migu.cn/9I6Wsb2ZKr07KkG+rnTofZEpjOheGWAg6MPV8shZM98YBIEDf1zvOT9V678Oi4SeJ74tozLA+OXRmZTklfd9DonBZks/gdbtmzLfILBznpV4mtduioWTUt6sJrQIh6QSVTUP/gL+1XXUsrxD5m+QSfJbhR/9sah6yWc7c3+yyDTlbhCloFmx69SnE7fhGgQb/Photograph-Ed%20Sheeran.mp4?msisdn=2a257d4c-1ee0-4ad8-8081-b1650c26390a&spid=600906&sid=57802448695100&timestamp=20200105200734&encrypt=fc9acfdd3b04779885959f38ee3d1f84&k=76cda881b62e5d3b&t=1578233254795&ec=1&FN=Photograph',
+        src: 'https://xiami-auth.alicdn.com/l2nDqpMmn6DGHnWzZQA/DOOTsSJFZs0tQXJuMWp@@hd.mp4?auth_key=1582795970-0-0-ff377f409f0eb784e7b9664f8397c247',
         type: 'mp4'
       },
       {
@@ -71,11 +73,11 @@
       }
     ]
     let someoneYouLoved = [{
-      src: '//vod.migu.cn/Ra30WETeg7QbUFSZSHsRBSMpxNc500qcHI2kqxUVqfD3kK2kjvrdMWtNHSEOFdjDbDilhmhq6gW7NJb5+J2yASA49CyuC8Im8j50+tjpaKpt/2bnFOFtA3EhZpzZcPi3aIwYPhpo+wEuZM7HUmvEV2XvVrXY0gwwRAHC9D5GJxxOBnP8Xb2b3EagmPFPRgW+/600566YALNU.mp4?msisdn=2a257d4c-1ee0-4ad8-8081-b1650c26390a&spid=600906&sid=52839256750100&timestamp=20200220145525&encrypt=89687eda410fad8db897ec6d45cda366&k=0654d3a5abc5400d&t=1582188925419&ec=1&FN=Someone+You+Loved+%28Audio%29',
+      src: 'https://xiami-auth.alicdn.com/l2nDqpMmn6DGHnWzZQA/8v1aBhyzinBsrdOPmj0@@hd.mp4?auth_key=1582796574-0-0-94524db5383a9cbed5764f2a681ea083',
       type: 'mp4'
     }]
     let thinkingItLoud =
-      'http://tyst.migu.cn/public/product8th/product38/2019/12/3114/2019%E5%B9%B412%E6%9C%8817%E6%97%A507%E7%82%B914%E5%88%86%E5%86%85%E5%AE%B9%E5%87%86%E5%85%A5%E5%8D%8E%E7%BA%B391%E9%A6%96093266/%E6%A0%87%E6%B8%85%E9%AB%98%E6%B8%85/MP3_128_16_Stero/6005751Y7GX.mp3'
+      'https://s128.xiami.net/258/23258/225092190/1774024617_16366056_l.mp3?ccode=xiami__&expire=86400&duration=281&psid=4a1f2803057994b006aa1b7515ca361e&ups_client_netip=null&ups_ts=1582793460&ups_userid=0&utid=&vid=1774024617&fn=1774024617_16366056_l.mp3&vkey=B2222f9155a0d16707d9429290af66a4a'
 
     let ogg = [{
       src: '/src/test/movie.ogv',
@@ -96,14 +98,18 @@
       // muted: true
     })
 
-    document.getElementById('J_SwitchToMp4').onclick = e => {
+    document.getElementById('J_Mp4_1').onclick = e => {
       player.load({
-        // media: photograph
         media: someoneYouLoved
       })
     }
+    document.getElementById('J_Mp4_2').onclick = e => {
+      player.load({
+        media: photograph
+      })
+    }
 
-    document.getElementById('J_SwitchToMp3').onclick = e => {
+    document.getElementById('J_Mp3_1').onclick = e => {
       player.load({
         type: 'mp3',
         media: thinkingItLoud
@@ -137,16 +143,16 @@
       })
     }
 
-    document.getElementById('J_Mp4PlaybackRate1').onclick = e => {
+    document.getElementById('J_PlaybackRate1').onclick = e => {
       player.setPlaybackRate(0.5)
     }
-    document.getElementById('J_Mp4PlaybackRate2').onclick = e => {
+    document.getElementById('J_PlaybackRate2').onclick = e => {
       player.setPlaybackRate(1)
     }
-    document.getElementById('J_Mp4PlaybackRate3').onclick = e => {
+    document.getElementById('J_PlaybackRate3').onclick = e => {
       player.setPlaybackRate(1.5)
     }
-    document.getElementById('J_Mp4PlaybackRate4').onclick = e => {
+    document.getElementById('J_PlaybackRate4').onclick = e => {
       player.setPlaybackRate(2)
     }
 
