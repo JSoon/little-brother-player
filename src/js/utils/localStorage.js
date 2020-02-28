@@ -26,7 +26,7 @@ const localStorage = (params) => {
    * 
    * @param {string}  key  key name
    * 
-   * @returns {any}   The primitive type data value
+   * @returns {any}   The data of the set value
    */
   function get(key) {
 
