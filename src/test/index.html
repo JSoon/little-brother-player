@@ -23,6 +23,22 @@
       margin: 0 2rem;
     }
 
+    @media screen and (max-width: 1024px) {
+      .test-page {
+        padding: 2rem 0;
+      }
+
+      #J_LittleBrotherPlayer {
+        width: 98%;
+        margin: 0;
+      }
+
+      .logo-l,
+      .logo-r {
+        display: none;
+      }
+    }
+
     .little-brother-player-video-wrapper {
       overflow: hidden;
       border-radius: .2rem;
@@ -56,9 +72,9 @@
   </div>
 
   <div class="test-page">
-    <img src="./logo-l.jpg" alt="logo-l">
+    <img class="logo-l" src="./logo-l.jpg" alt="logo-l">
     <div id="J_LittleBrotherPlayer"></div>
-    <img src="./logo-r.jpg" alt="logo-r">
+    <img class="logo-r" src="./logo-r.jpg" alt="logo-r">
   </div>
 
   <script src="/lbplayer/little.brother.player.js"></script>
