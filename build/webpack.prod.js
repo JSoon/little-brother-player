@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const banner = require('./banner');
 const constants = require('./constants');
 const publicDate = require('./date'); // 发布日期
@@ -42,6 +43,10 @@ module.exports = merge(common, {
 		new webpack.SourceMapDevToolPlugin({
 			filename: '[name].js.map',
 			// exclude: ['vendor.js']
-		})
+		}),
+		new CopyPlugin([{
+			from: path.resolve(constants.srcPath, 'test'),
+			to: path.resolve(constants.publicPath, publicDate)
+		}]),
 	]
 });

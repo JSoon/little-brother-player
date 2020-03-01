@@ -23,7 +23,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(constants.publicPath, publicDate),
-    publicPath: '/', // chunks resources base path
+    publicPath: constants.staticPath, // chunks resources base path
     // https://webpack.js.org/configuration/output/#outputlibrarytarget
     library: 'littleBrother', // window.littleBrother
     libraryExport: 'default',
@@ -44,6 +44,9 @@ module.exports = {
         'utils/**/*'
       ],
       aggregateTimeout: 1000
+    },
+    proxy: {
+      [constants.staticPath]: 'http://localhost:9000'
     }
   },
   module: {
