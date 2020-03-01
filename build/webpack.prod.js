@@ -47,6 +47,9 @@ module.exports = merge(common, {
 		new CopyPlugin([{
 			from: path.resolve(constants.srcPath, 'test'),
 			to: path.resolve(constants.publicPath)
+		}, {
+			from: path.resolve(constants.rootPath, 'logo.jpg'),
+			to: path.resolve(constants.publicPath)
 		}]),
 	]
 });
