@@ -22,7 +22,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(constants.publicPath, publicDate),
+    path: path.resolve(constants.publicPath),
     publicPath: constants.staticPath, // chunks resources base path
     // https://webpack.js.org/configuration/output/#outputlibrarytarget
     library: 'littleBrother', // window.littleBrother

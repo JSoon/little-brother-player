@@ -46,7 +46,7 @@ module.exports = merge(common, {
 		}),
 		new CopyPlugin([{
 			from: path.resolve(constants.srcPath, 'test'),
-			to: path.resolve(constants.publicPath, publicDate)
+			to: path.resolve(constants.publicPath)
 		}]),
 	]
 });
