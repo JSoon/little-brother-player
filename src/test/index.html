@@ -9,9 +9,17 @@
 
   <link rel="stylesheet" href="/lbplayer/little.brother.player.css">
   <style>
+    body {
+      font-family: PingFang SC, Lantinghei SC, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, 微软雅黑, STHeitiSC-Light, simsun, 宋体, WenQuanYi Zen Hei, WenQuanYi Micro Hei, "sans-serif";
+    }
+
+    h1 {
+      text-align: center;
+    }
+
     .github-link {
       position: absolute;
-      right: .5rem;
+      right: 1rem;
       display: block;
       width: 100px;
     }
@@ -93,6 +101,8 @@
     <img src="./GitHub_Logo.png" alt="GitHub_Logo">
   </a>
 
+  <h1>😘 Little Brother Player 😍</h1>
+
   <div class="test-control">
     <button id="J_Mp4_1">Someone You Loved</button>
     <button id="J_Mp4_2">Photograph</button>
@@ -136,7 +146,7 @@
       type: 'ogg'
     }]
 
-    let image = '/lbplayer/logo.jpg'
+    let image = './logo.jpg'
 
     const player = littleBrother({
       id: 'J_LittleBrotherPlayer',

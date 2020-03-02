@@ -46,7 +46,7 @@ module.exports = {
       aggregateTimeout: 1000
     },
     proxy: {
-      [constants.staticPath]: 'http://localhost:9000'
+      [constants.staticPath]: 'localhost:9000'
     }
   },
   module: {
