@@ -6,6 +6,7 @@ import pip from './pip'
 import volume from './volume'
 import playtime from './playtime'
 import shortcuts from './shortcuts'
+import visibilitychange from './visibilitychange'
 
 /**
  * @description Controller bar
@@ -37,6 +38,8 @@ export default (params) => {
   controllerBar.appendChild(controllers)
   dom.ui.appendChild(controllerBar)
 
+  console.log('Controllers:', dom)
+
   progressbar(params)
   playBtn(params)
   volume(params)
@@ -44,10 +47,8 @@ export default (params) => {
   pip(params)
   fullpage(params)
   fullscreen(params)
-
-  console.log('Controllers:', dom)
-
   shortcuts(params)
+  visibilitychange(params)
 
   return controllerBar
 }
