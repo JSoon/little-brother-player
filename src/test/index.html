@@ -21,27 +21,42 @@
     }
 
     .test-page {
-      display: flex;
+      /* display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 2rem;
+      align-items: center; */
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    .test-page .logo-l,
+    .test-page .logo-r {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20%;
+      background-size: contain !important;
+    }
+
+    .test-page .logo-l {
+      left: 2rem;
+      background: url(./logo-l.jpg) center center no-repeat transparent;
+    }
+
+    .test-page .logo-r {
+      right: 2rem;
+      background: url(./logo-r.jpg) center center no-repeat transparent;
     }
 
     #J_LittleBrotherPlayer {
       position: relative;
-      width: 640px;
-      height: 360px;
-      margin: 0 2rem;
+      width: 50%;
+      margin: 0 auto;
     }
 
     @media screen and (max-width: 1024px) {
       .github-link {
         position: initial;
         margin: 0 auto;
-      }
-
-      .test-page {
-        padding: 2rem 0;
       }
 
       #J_LittleBrotherPlayer {
@@ -57,12 +72,12 @@
 
     .little-brother-player-video-wrapper {
       overflow: hidden;
-      border-radius: .2rem;
+      border-radius: .3rem;
       box-shadow: 0 2rem 5rem rgba(0, 0, 0, .6);
     }
 
     .little-brother-player-ui {
-      border-radius: .2rem;
+      border-radius: .3rem;
     }
 
     .test-control {
@@ -93,9 +108,9 @@
   </div>
 
   <div class="test-page">
-    <img class="logo-l" src="./logo-l.jpg" alt="logo-l">
+    <div class="logo-l"></div>
     <div id="J_LittleBrotherPlayer"></div>
-    <img class="logo-r" src="./logo-r.jpg" alt="logo-r">
+    <div class="logo-r"></div>
   </div>
 
   <script src="/lbplayer/little.brother.player.js"></script>
