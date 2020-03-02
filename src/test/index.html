@@ -9,6 +9,17 @@
 
   <link rel="stylesheet" href="/lbplayer/little.brother.player.css">
   <style>
+    .github-link {
+      position: absolute;
+      right: .5rem;
+      display: block;
+      width: 100px;
+    }
+
+    .github-link img {
+      width: 100%;
+    }
+
     .test-page {
       display: flex;
       justify-content: center;
@@ -24,6 +35,11 @@
     }
 
     @media screen and (max-width: 1024px) {
+      .github-link {
+        position: initial;
+        margin: 0 auto;
+      }
+
       .test-page {
         padding: 2rem 0;
       }
@@ -56,6 +72,11 @@
 </head>
 
 <body>
+
+  <a class="github-link" href="https://github.com/JSoon/little-brother-player" title="little-brother-player"
+    target="_blank">
+    <img src="./GitHub_Logo.png" alt="GitHub_Logo">
+  </a>
 
   <div class="test-control">
     <button id="J_Mp4_1">Someone You Loved</button>
