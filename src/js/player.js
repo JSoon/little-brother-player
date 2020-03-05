@@ -46,27 +46,32 @@ const littleBrother = settings => {
   // Register global settings
   Global.settings = settings
 
-  /**
-   * @description Generate player DOM, Define methods & Define methods
-   */
-  const {
-    dom,
-    api
-  } = DOM({
-    settings
-  })
+  // try {
+    /**
+     * @description Generate player DOM, Define methods & Define methods
+     */
+    const {
+      dom,
+      api
+    } = DOM({
+      settings
+    })
 
-  // Define static params
-  littleBrother.dom = dom
+    // Define static params
+    littleBrother.dom = dom
 
-  // Load media
-  api.load(settings)
+    // Load media
+    api.load(settings)
 
-  return api
+    return api
+
+  // } catch (error) {
+  //   Utils.debug.error(error)
+  // }
 
 }
 
-// Deal with namespace conflict
+// Deal with global namespace conflict
 if (!window.littleBrother) {
   window.littleBrother = littleBrother
 } else {

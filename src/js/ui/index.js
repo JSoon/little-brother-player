@@ -1,6 +1,8 @@
 import controllerBar from '~/js/controllers/index'
 import debugPanel from './debug'
 import contextMenu from './contextMenu'
+import commentArea from './comment'
+import fullscreen from '../controllers/fullscreen'
 
 /**
  * @description Player UI
@@ -19,6 +21,7 @@ export default (params) => {
 
   debugPanel(params)
   contextMenu(params)
+  commentArea(params)
 
   controllerBar(params)
 
@@ -32,7 +35,17 @@ export default (params) => {
     ) {
       api.togglePlay()
     }
-  })
+  }, true)
+
+  // Toggle fullscreen
+  UIEle.addEventListener('dblclick', e => {
+    if (
+      !dom.ctrls.contains(e.target) &&
+      !dom.contextMenu.contains(e.target)
+    ) {
+      api.toggleFullscreen(e)
+    }
+  }, true)
 
   //#endregion
 

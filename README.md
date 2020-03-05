@@ -17,7 +17,7 @@
 - [x] Displaying poster
 - [ ] Advertisement
 - [ ] Statistics
-- [ ] Live comments (AKA 弹幕)
+- [x] Live comments (AKA 弹幕)
 - [ ] Share
 - [ ] Text tracks
 - [ ] ...(TBD)

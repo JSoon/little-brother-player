@@ -29,7 +29,7 @@ export default (params) => {
 
       case 'KeyF':
         // Toggle fullscreen
-        api.toggleFullscreen(dom.wrapper, e)
+        api.toggleFullscreen(e)
         break
 
       case 'KeyM':

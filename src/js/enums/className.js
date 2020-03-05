@@ -18,6 +18,8 @@ const className = {
   ui: `${prefix}-ui`,
   debugPanel: `${prefix}-ui-debug-panel`,
   contextMenu: `${prefix}-ui-context-menu`,
+  commentArea: `${prefix}-ui-comment-area`,
+  commentItem: `${prefix}-ui-comment-item`,
 
   // Controllers
   ctrlBar: `${prefix}-ctrl-bar`,

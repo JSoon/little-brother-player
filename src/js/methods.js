@@ -8,6 +8,7 @@ import {
   exitfullpage
 } from './custom-events'
 import hlsAPI from '~/js/hls/methods'
+import Comment from '~/js/comment/comment'
 
 /**
  * @description Player methods
@@ -29,7 +30,7 @@ const methods = (params) => {
 
   const video = dom.video
   let hls = null
-
+  
   let volumeBeforeMuted = settings.volume || 1
 
   api.seek = seek
@@ -79,7 +80,7 @@ const methods = (params) => {
 
       // Register hls.js methods
       params.hls = hls
-      api.hls = hlsAPI(params)
+      hlsAPI(params)
       return
     }
     //#endregion
@@ -205,7 +206,7 @@ const methods = (params) => {
    * @param {HTMLElement} ele The html element that needs to enter fullscreen state
    * @param {object}      e   Event object 
    */
-  function toggleFullscreen(ele, e) {
+  function toggleFullscreen(e) {
     if (!fscreen.fullscreenEnabled) {
       throw 'Fullscreen is not support!'
     }
@@ -213,7 +214,7 @@ const methods = (params) => {
     if (fscreen.fullscreenElement !== null) {
       fscreen.exitFullscreen()
     } else {
-      fscreen.requestFullscreen(ele)
+      fscreen.requestFullscreen(dom.wrapper)
     }
   }
 
@@ -459,6 +460,8 @@ const methods = (params) => {
   }
 
   //#endregion
+
+  api.comment = new Comment(params)
 
   return api
 

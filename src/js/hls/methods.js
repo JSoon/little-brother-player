@@ -150,6 +150,8 @@ export default (params) => {
 
   //#endregion
 
+  api.hls = hlsAPI
+
   return hlsAPI
 
 }

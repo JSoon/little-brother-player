@@ -115,6 +115,9 @@
     <button id="J_PlaybackRate2">1.0X</button>
     <button id="J_PlaybackRate3">1.5X</button>
     <button id="J_PlaybackRate4">2.0X</button>
+    <button id="J_LiveComments20">Live Comments x20</button>
+    <button id="J_LiveComments50">Live Comments x50</button>
+    <button id="J_LiveComments100">Live Comments x100</button>
   </div>
 
   <div class="test-page">
@@ -218,6 +221,40 @@
       player.setPlaybackRate(2)
     }
 
+    document.getElementById('J_LiveComments20').onclick = e => {
+      for (let i = 0; i < 20; i += 1) {
+        player.comment.add({
+          html: 'hello world',
+          style: {
+            fontSize: '12px',
+            color: getRandomColor()
+          }
+        })
+      }
+    }
+    document.getElementById('J_LiveComments50').onclick = e => {
+      for (let i = 0; i < 50; i += 1) {
+        player.comment.add({
+          html: 'hello world',
+          style: {
+            fontSize: '12px',
+            color: getRandomColor()
+          }
+        })
+      }
+    }
+    document.getElementById('J_LiveComments100').onclick = e => {
+      for (let i = 0; i < 100; i += 1) {
+        player.comment.add({
+          html: 'hello world',
+          style: {
+            fontSize: '12px',
+            color: getRandomColor()
+          }
+        })
+      }
+    }
+
     // player.on('pause', () => {
     //   console.log('呵呵');
 
@@ -231,6 +268,15 @@
     //   console.log('exitfullpage');
 
     // })
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
   </script>
 </body>
 

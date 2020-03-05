@@ -25,7 +25,7 @@ export default (params) => {
   ctrlEle.classList.add(Enums.className.fullscreen)
 
   ctrlEle.addEventListener('click', e => {
-    api.toggleFullscreen(dom.wrapper, e)
+    api.toggleFullscreen(e)
   })
 
   const tooltip = Coms.tooltip({
