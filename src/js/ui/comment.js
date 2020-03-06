@@ -16,7 +16,8 @@ export default (params) => {
   dom.commentArea = commentArea
 
   // Prebuild serval number of items for reducing javascript & recalculating style time
-  for (let i = 0; i < 1000; i += 1) {
+  const cacheNumber = 500
+  for (let i = 0; i < cacheNumber; i += 1) {
     const commentItem = document.createElement('div')
     commentItem.classList.add(Enums.className.commentItem)
     // Reset transition after the end of animation
