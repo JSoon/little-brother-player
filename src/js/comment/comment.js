@@ -17,6 +17,7 @@ class Comment {
     this.threshold = 500 // The max number of reused comment items
     this.currentItemIdx = 0 // Current index of reused comment items
     this.interval = 200 // Interval between last comment item
+    this.allTopSet = false // Indicate if all the reused comment items' top property have been calculated
     this.clientChanged = true // If the size of area client has changed
     this.currentSize = {
       clientWidth: 0,
@@ -75,16 +76,16 @@ class Comment {
     // Get the line and delete it from posArr
     const randomPos = Utils.random.randomInt(this.posArr.length - 1)
     const lineIdx = this.posArr[randomPos]
-    const top = lineIdx * lineHeight // Comment item top position
     // console.log('this.posArr.length', this.posArr.length);
     // console.log('lineIdx', lineIdx);
-
+    
     // Set duration according to lineNumber
-
-
+    
+    
     // Initial comment item
     if (this.currentItemIdx > this.threshold - 1) { // currentItemIdx starts from 0
       this.currentItemIdx = 0
+      this.allTopSet = true
     }
     const item = items[this.currentItemIdx]
     this.currentItemIdx += 1
@@ -95,7 +96,10 @@ class Comment {
     })
     // After step of JS, recalculate the width of item
     const transWidth = areaWidth * 2
-    item.style.top = `${top}px`
+    if (!this.allTopSet) {
+      const top = lineIdx * lineHeight // Comment item top position
+      item.style.top = `${top}px`
+    }
     item.style.transform = `translate3d(-${transWidth}px, 0, 0)`
     item.style.transitionDuration = `${speed}ms`
     item.style.transitionDelay = `${(lineNumber - this.posArr.length) * this.interval}ms`
