@@ -20,13 +20,18 @@ export default (params) => {
   for (let i = 0; i < cacheNumber; i += 1) {
     const commentItem = document.createElement('div')
     commentItem.classList.add(Enums.className.commentItem)
-    // Reset transition after the end of animation
-    commentItem.addEventListener('transitionend', e => {
-      commentItem.style.transition = `none` // Reset transition duration
-      commentItem.style.transform = `none` // Reset transform style
-    })
     commentArea.appendChild(commentItem)
   }
+
+  // Reset transition after the end of animation of comment item
+  commentArea.addEventListener('transitionend', e => {
+    console.log(e.target.getAttribute('class') === Enums.className.commentItem);
+    if (e.target.getAttribute('class') !== Enums.className.commentItem) {
+      return
+    }
+    e.target.style.transition = `none` // Reset transition duration
+    e.target.style.transform = `none` // Reset transform style
+  })
 
   dom.ui.appendChild(commentArea)
 
