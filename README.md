@@ -1,6 +1,6 @@
-# little-brother-player
+<h1>little-brother-player</h1>
 
-![little-brother](https://github.com/JSoon/little-brother-player/blob/master/logo.jpg?raw=true)
+![little-brother](./logo.jpg)
 
 ## Introduction
 
@@ -21,3 +21,11 @@
 - [ ] Share
 - [ ] Text tracks
 - [ ] ...(TBD)
+
+
+## Design Principle
+
+### Lifecycle Diagram
+
+![little-brother](./docs/Lifecycle-Diagram.png)
+
