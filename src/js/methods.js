@@ -8,7 +8,6 @@ import {
   exitfullpage
 } from './custom-events'
 import hlsAPI from '~/js/hls/methods'
-import Comment from '~/js/comment/comment'
 
 /**
  * @description Player methods
@@ -461,7 +460,6 @@ const methods = (params) => {
 
   //#endregion
 
-  api.comment = new Comment(params)
 
   return api
 

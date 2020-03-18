@@ -25,7 +25,7 @@ export default (params) => {
 
   // Reset transition after the end of animation of comment item
   commentArea.addEventListener('transitionend', e => {
-    console.log(e.target.getAttribute('class') === Enums.className.commentItem);
+    // console.log(e.target.getAttribute('class') === Enums.className.commentItem);
     if (e.target.getAttribute('class') !== Enums.className.commentItem) {
       return
     }

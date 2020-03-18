@@ -19,6 +19,8 @@ export default (params) => {
   UIEle.classList.add(Enums.className.ui)
   dom.ui = UIEle
 
+  dom.videoWrapper.appendChild(UIEle)
+
   debugPanel(params)
   contextMenu(params)
   commentArea(params)

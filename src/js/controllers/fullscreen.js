@@ -36,10 +36,12 @@ export default (params) => {
 
   api.on('enterfullscreen', _ => {
     tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].fullscreenExitTitle)
+    api.comment.updateArea()   
   })
 
   api.on('exitfullscreen', _ => {
     tooltip.updateTooltipTitle(Enums.i18n[settings.i18n].fullscreenEnterTitle)
+    api.comment.updateArea()   
   })
 
   return ctrlEle

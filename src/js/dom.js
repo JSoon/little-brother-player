@@ -39,6 +39,10 @@ export default (params) => {
   params.videoEle = videoEle
   dom.videoWrapper = videoWrapper
   dom.video = videoEle
+  
+  playerWrapper.appendChild(videoWrapper)
+
+  lb.append(playerWrapper)
 
   // Set video native attributes
   Object.keys(settings).forEach(key => {
@@ -63,12 +67,7 @@ export default (params) => {
   events(params)
 
   // UI components
-  const UIEle = UI(params)
-
-  playerWrapper.appendChild(videoWrapper)
-  playerWrapper.appendChild(UIEle)
-
-  lb.append(playerWrapper)
+  UI(params)
 
   return params
 }

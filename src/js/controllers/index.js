@@ -7,6 +7,7 @@ import volume from './volume'
 import playtime from './playtime'
 import shortcuts from './shortcuts'
 import visibilitychange from './visibilitychange'
+import comment from './comment'
 
 /**
  * @description Controller bar
@@ -49,6 +50,7 @@ export default (params) => {
   fullscreen(params)
   shortcuts(params)
   visibilitychange(params)
+  comment(params)
 
   return controllerBar
 }
