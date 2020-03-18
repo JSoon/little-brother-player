@@ -40,8 +40,8 @@
 
 Considering the rendering performance, this implementation manages to avoid triggerring all the stages but `Composite`. So we do almost everything that's essential at the first place. The process for live comment would be like following steps:
 
-1. Initial `n` pieces comment elements in the DOM for reuse with fixed positions along the Y axis of the video
-2. Bind `transitionend` event on the container of all comment elements to reset the positions of them
-3. Transform the comment element by a certain distance, which is typically the video width that is cached. So as long as the size of the video is not changed, it won't trigger the Layout of browser
-4. As the comments going, there will be no new DOM element being created and appended into the document. As a result, there will be no extra Javascript calculation, less Style, less Layout. The only updates are the innerHTML and styles of comments, which is not a problem at all with GPU acceleration
+1. Initial `n` pieces comment elements in the DOM for reuse with fixed positions along the Y axis of the video.
+2. Bind `transitionend` event on the container of all comment elements to reset the positions of them.
+3. Transform the comment element by a certain distance, which is typically the video width that is cached. So as long as the size of the video is not changed, it won't trigger the Layout of browser.
+4. As the comments going, there will be no new DOM element being created and appended into the document. As a result, there will be no extra Javascript calculation, less Style, less Layout. The only updates are the innerHTML and styles of comments, which is not a problem at all with GPU acceleration.
 
