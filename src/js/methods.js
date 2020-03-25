@@ -335,6 +335,7 @@ const methods = (params) => {
     video.addEventListener(eventName, e => {
       Utils.debug.log(`Event triggered: ${eventName}`)
 
+      func = func.bind(video)
       func(e)
     })
 

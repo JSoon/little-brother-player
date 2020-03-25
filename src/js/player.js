@@ -27,6 +27,7 @@ const littleBrother = settings => {
   const defaults = {
     debug: false,
     autoplay: false,
+    preload: 'metadata',
     i18n: 'en',
     live: false,
     initialTime: Utils.getUrlParamByName(Enums.paramName.initialTime)

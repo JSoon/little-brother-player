@@ -81,7 +81,7 @@ export default (params) => {
 
   })
 
-  ctrlBarEle.addEventListener('click', (event) => {
+  ctrlBarEle.addEventListener('mouseup', (event) => {
     // console.log(event.currentTarget) // Point to the element to which event is bound, i.e. ctrlBarEle here
     // console.log(event.target); // Point to the element on which we click, and the click event will bubble up to the currentTarget eventually
 

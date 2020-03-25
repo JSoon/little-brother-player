@@ -156,7 +156,7 @@ const events = (params) => {
   })
 
   api.on('enterfullpage', () => {
-    
+
   })
 
   api.on('exitfullpage', () => {
@@ -168,6 +168,18 @@ const events = (params) => {
   })
 
   api.on('exitpip', () => {
+
+  })
+
+  api.on('x5videoenterfullscreen', function () {
+    // if (WeixinJSBridge) {
+    //   WeixinJSBridge.call('closeWindow')
+    // }
+    // alert(this)
+    // this.webkitExitFullScreen()
+  })
+
+  api.on('x5videoexitfullscreen', () => {
 
   })
 
